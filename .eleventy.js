@@ -1,5 +1,6 @@
 const markdownIt = require("markdown-it");
 const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const { slugify, noteUrl } = require("./lib/wikilinks");
 
 /**
@@ -49,6 +50,10 @@ module.exports = function (eleventyConfig) {
   // Isso faz os wikilinks e links internos funcionarem em sites de projeto
   // do GitHub Pages (servidos em /<repo>/) sem precisar do filtro `url`.
   eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+
+  // Syntax highlighting (PrismJS em tempo de build, sem JS no cliente).
+  // As cores dos tokens estão em assets/style.css, alinhadas ao tema dark.
+  eleventyConfig.addPlugin(syntaxHighlight);
 
   // Index de busca gerado pelo build-index.js vai para o site final
   eleventyConfig.addPassthroughCopy({ "src/searchIndex.json": "searchIndex.json" });

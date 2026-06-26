@@ -7,3 +7,4 @@ src/_data/backlinks.json
 
 .DS_Store
 *.log
+.playwright-cli

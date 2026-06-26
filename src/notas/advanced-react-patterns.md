@@ -1,5 +1,5 @@
 ---
-title: "Advanced React & TypeScript Patterns"
+title: "Advanced React"
 layout: base.njk
 category: Frontend
 tags: [react, typescript, patterns, study-plan, interview]
@@ -37,28 +37,9 @@ function Tab({ id, children }: { id: string; children: ReactNode }) {
 Tabs.Tab = Tab;
 ```
 
-## TypeScript — tipagem avançada
-- **Generics em componentes** — `function List<T>(props: { items: T[]; render: (t: T) => ReactNode })`.
-- **Discriminated unions** para props mutuamente exclusivas (ex.: `variant`).
-- **Utility types** — `Partial`, `Pick`, `Omit`, `Record`, `ReturnType`,
-  `Parameters`, `Awaited`.
-- **`as const`** e literais; `satisfies` para validar sem alargar o tipo.
-- **Conditional & mapped types**, `infer`, template literal types.
-- **Tipar hooks** — sobrecargas de `useState`, tipar reducers com unions de ações.
-- **Component polimórfico tipado** com `ElementType` e `ComponentPropsWithoutRef`.
-
-```ts
-type ButtonProps =
-  | { variant: "link"; href: string }
-  | { variant: "button"; onClick: () => void };
-// o TS força href OU onClick conforme variant (discriminated union)
-```
-
 ## Perguntas de entrevista (treinar)
 - Como evitar re-renders desnecessários causados por Context?
 - Diferença entre `useMemo`, `useCallback` e `memo` — quando cada um?
-- Como tiparia um componente genérico de tabela/lista reutilizável?
-- O que é inversão de controle e como render props ajudam?
 
 ---
 Relacionadas: [[react-performance]] · [[study-plan-gaps|plano de estudos]].

@@ -189,20 +189,82 @@ code {
   font-size: 0.85em;
   color: #f1b3da;
 }
-pre {
+pre,
+pre[class*="language-"] {
   background: var(--code-bg);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 1.1rem 1.25rem;
   overflow-x: auto;
   line-height: 1.55;
+  tab-size: 2;
 }
-pre code {
+pre code,
+pre[class*="language-"] code,
+code[class*="language-"] {
   background: none;
   border: 0;
   padding: 0;
   color: #d6deeb;
   font-size: 0.86rem;
+  text-shadow: none;
+}
+
+/* ---------- Tokens do PrismJS (tema dark) ---------- */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #6b7280;
+  font-style: italic;
+}
+.token.punctuation {
+  color: #8b94a3;
+}
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #ff8cc8;
+}
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #7ee787;
+}
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #9ecbff;
+}
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: var(--accent-fg);
+}
+.token.function,
+.token.class-name {
+  color: #d2a8ff;
+}
+.token.regex,
+.token.important,
+.token.variable {
+  color: #ffab70;
+}
+.token.important,
+.token.bold {
+  font-weight: 600;
+}
+.token.italic {
+  font-style: italic;
 }
 
 blockquote {
