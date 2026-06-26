@@ -378,6 +378,6 @@ function withAuth<P extends WithAuthProps>(
 - `type-fest` – Coleção de utility types avançados (ex: `OmitIndexSignature`, `DelimiterCasedProperties`).
 - ESLint: `@typescript-eslint/consistent-type-imports` – Força `import type` para melhor bundling.
 
----
+---typeScript-patterns
 
 > **Conclusão:** Dominar estes padrões não é apenas sobre escrever tipos, mas sobre **modelar domínios, prevenir bugs em tempo de compilação e criar APIs intuitivas**. O verdadeiro poder do TypeScript emerge quando os tipos guiam a implementação, e não apenas a documentam.
