@@ -1,0 +1,9 @@
+node_modules/
+_site/
+
+# artefatos gerados pelo build-index.js
+src/searchIndex.json
+src/_data/backlinks.json
+
+.DS_Store
+*.log

@@ -1,0 +1,33 @@
+{
+  "name": "sinaiticus",
+  "version": "0.1.0",
+  "description": "Digital garden em Markdown com wikilinks, backlinks e busca offline (Eleventy + Lunr.js).",
+  "type": "commonjs",
+  "scripts": {
+    "index": "node build-index.js",
+    "build": "npm run index && eleventy",
+    "dev": "npm run index && eleventy --serve --port=5500",
+    "clean": "rm -rf _site src/searchIndex.json src/_data/backlinks.json",
+    "format": "prettier --write \"**/*.{js,json,md,njk,css}\""
+  },
+  "keywords": [
+    "eleventy",
+    "11ty",
+    "markdown",
+    "wikilinks",
+    "backlinks",
+    "lunr",
+    "digital-garden"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "glob": "^11.0.0",
+    "gray-matter": "^4.0.3",
+    "lunr": "^2.3.9",
+    "markdown-it": "^14.1.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  }
+}

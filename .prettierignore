@@ -1,0 +1,5 @@
+node_modules/
+_site/
+src/searchIndex.json
+src/_data/backlinks.json
+package-lock.json

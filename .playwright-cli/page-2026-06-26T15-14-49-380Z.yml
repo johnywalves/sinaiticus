@@ -1,0 +1,471 @@
+- generic [ref=e2]:
+  - region "Skip to main content":
+    - link "Skip to main content" [ref=e3] [cursor=pointer]:
+      - /url: "#__docusaurus_skipToContent_fallback"
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - text: We are now part of
+      - link "GreatFrontEnd" [ref=e6] [cursor=pointer]:
+        - /url: https://www.greatfrontend.com/?utm_source=frontendinterviewhandbook&utm_medium=referral&utm_content=banner&gnrs=frontendinterviewhandbook
+      - text: ", a front end interview preparation platform created by ex-Meta and Google Engineers."
+      - link "Get 20% off today" [ref=e7] [cursor=pointer]:
+        - /url: https://www.greatfrontend.com/?utm_source=frontendinterviewhandbook&utm_medium=referral&utm_content=banner&gnrs=frontendinterviewhandbook
+      - text: "!"
+  - navigation "Main" [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - link "Front End Interview Handbook Logo Front End Interview Handbook" [ref=e11] [cursor=pointer]:
+          - /url: /
+          - img "Front End Interview Handbook Logo" [ref=e13]
+          - generic [ref=e14]: Front End Interview Handbook
+        - link "Start reading" [ref=e15] [cursor=pointer]:
+          - /url: /introduction
+        - button "Practice" [ref=e17] [cursor=pointer]
+        - link "System design" [ref=e18] [cursor=pointer]:
+          - /url: /front-end-system-design
+        - link "Blog" [ref=e19] [cursor=pointer]:
+          - /url: /blog
+      - generic [ref=e20]:
+        - button "English" [ref=e22] [cursor=pointer]:
+          - img [ref=e23]
+          - text: English
+        - link "GitHub repository" [ref=e25] [cursor=pointer]:
+          - /url: https://github.com/yangshun/front-end-interview-handbook
+          - img [ref=e26]
+        - link "Discord channel" [ref=e28] [cursor=pointer]:
+          - /url: https://discord.com/invite/NDFx8f6P6B
+          - img [ref=e29]
+        - link "Twitter page" [ref=e31] [cursor=pointer]:
+          - /url: https://x.com/greatfrontend
+          - img [ref=e32]
+        - button "Switch between dark and light mode (currently light mode)" [ref=e35] [cursor=pointer]:
+          - img [ref=e36]
+        - button "Search (Ctrl+K)" [ref=e39] [cursor=pointer]:
+          - generic [ref=e40]:
+            - img [ref=e41]
+            - generic [ref=e43]: Search
+          - generic [ref=e44]:
+            - img [ref=e46]
+            - generic [ref=e48]: K
+  - generic [ref=e51]:
+    - complementary [ref=e52]:
+      - generic [ref=e54]:
+        - navigation "Docs sidebar" [ref=e55]:
+          - list [ref=e56]:
+            - listitem [ref=e57]:
+              - link "Introduction" [ref=e58] [cursor=pointer]:
+                - /url: /introduction
+            - listitem [ref=e59]:
+              - link "Coding interview" [expanded] [ref=e61] [cursor=pointer]:
+                - /url: "#"
+              - list [ref=e62]:
+                - listitem [ref=e63]:
+                  - link "JavaScript coding" [ref=e64] [cursor=pointer]:
+                    - /url: /coding/javascript-utility-function
+                - listitem [ref=e65]:
+                  - link "User interface coding" [ref=e66] [cursor=pointer]:
+                    - /url: /coding/build-front-end-user-interfaces
+                - listitem [ref=e67]:
+                  - link "Algorithms coding" [ref=e68] [cursor=pointer]:
+                    - /url: /coding/algorithms
+            - listitem [ref=e69]:
+              - link "Quiz/trivia interview" [ref=e71] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e72]:
+              - link "System design interview" [expanded] [ref=e74] [cursor=pointer]:
+                - /url: "#"
+              - list [ref=e75]:
+                - listitem [ref=e76]:
+                  - link "Overview" [ref=e77] [cursor=pointer]:
+                    - /url: /front-end-system-design
+                - listitem [ref=e78]:
+                  - link "User interface components" [ref=e79] [cursor=pointer]:
+                    - /url: /front-end-system-design/ui-components
+                - listitem [ref=e80]:
+                  - link "Applications" [ref=e81] [cursor=pointer]:
+                    - /url: /front-end-system-design/applications
+            - listitem [ref=e82]:
+              - link "Behavioral interviews" [ref=e83] [cursor=pointer]:
+                - /url: /behavioral
+            - listitem [ref=e84]:
+              - link "Resume preparation" [ref=e85] [cursor=pointer]:
+                - /url: /resume
+            - listitem [ref=e86]:
+              - generic [ref=e87]:
+                - link "Interview questions 🔥" [expanded] [ref=e88] [cursor=pointer]:
+                  - /url: /company-interview-questions
+                - button "Collapse sidebar category 'Interview questions 🔥'" [ref=e89] [cursor=pointer]
+              - list [ref=e90]:
+                - listitem [ref=e91]:
+                  - link "Google interview questions" [ref=e92] [cursor=pointer]:
+                    - /url: /companies/google-front-end-interview-questions
+                - listitem [ref=e93]:
+                  - link "Meta interview questions" [ref=e94] [cursor=pointer]:
+                    - /url: /companies/meta-front-end-interview-questions
+                - listitem [ref=e95]:
+                  - link "Apple interview questions" [ref=e96] [cursor=pointer]:
+                    - /url: /companies/apple-front-end-interview-questions
+                - listitem [ref=e97]:
+                  - link "Amazon interview questions" [ref=e98] [cursor=pointer]:
+                    - /url: /companies/amazon-front-end-interview-questions
+                - listitem [ref=e99]:
+                  - link "Microsoft interview questions" [ref=e100] [cursor=pointer]:
+                    - /url: /companies/microsoft-front-end-interview-questions
+                - listitem [ref=e101]:
+                  - link "Netflix interview questions" [ref=e102] [cursor=pointer]:
+                    - /url: /companies/netflix-front-end-interview-questions
+                - listitem [ref=e103]:
+                  - link "OpenAI interview questions" [ref=e104] [cursor=pointer]:
+                    - /url: /companies/openai-front-end-interview-questions
+                - listitem [ref=e105]:
+                  - link "ByteDance/TikTok interview questions" [ref=e106] [cursor=pointer]:
+                    - /url: /companies/bytedance-tiktok-front-end-interview-questions
+                - listitem [ref=e107]:
+                  - link "Uber interview questions" [ref=e108] [cursor=pointer]:
+                    - /url: /companies/uber-front-end-interview-questions
+                - listitem [ref=e109]:
+                  - link "Airbnb interview questions" [ref=e110] [cursor=pointer]:
+                    - /url: /companies/airbnb-front-end-interview-questions
+                - listitem [ref=e111]:
+                  - link "LinkedIn interview questions" [ref=e112] [cursor=pointer]:
+                    - /url: /companies/linkedin-front-end-interview-questions
+                - listitem [ref=e113]:
+                  - link "Adobe interview questions" [ref=e114] [cursor=pointer]:
+                    - /url: /companies/adobe-front-end-interview-questions
+                - listitem [ref=e115]:
+                  - link "Salesforce interview questions" [ref=e116] [cursor=pointer]:
+                    - /url: /companies/salesforce-front-end-interview-questions
+                - listitem [ref=e117]:
+                  - link "Oracle interview questions" [ref=e118] [cursor=pointer]:
+                    - /url: /companies/oracle-front-end-interview-questions
+                - listitem [ref=e119]:
+                  - link "Atlassian interview questions" [ref=e120] [cursor=pointer]:
+                    - /url: /companies/atlassian-front-end-interview-questions
+                - listitem [ref=e121]:
+                  - link "Shopify interview questions" [ref=e122] [cursor=pointer]:
+                    - /url: /companies/shopify-front-end-interview-questions
+                - listitem [ref=e123]:
+                  - link "Coinbase interview questions" [ref=e124] [cursor=pointer]:
+                    - /url: /companies/coinbase-front-end-interview-questions
+                - listitem [ref=e125]:
+                  - link "Palantir interview questions" [ref=e126] [cursor=pointer]:
+                    - /url: /companies/palantir-front-end-interview-questions
+                - listitem [ref=e127]:
+                  - link "DoorDash interview questions" [ref=e128] [cursor=pointer]:
+                    - /url: /companies/doordash-front-end-interview-questions
+                - listitem [ref=e129]:
+                  - link "Pinterest interview questions" [ref=e130] [cursor=pointer]:
+                    - /url: /companies/pinterest-front-end-interview-questions
+                - listitem [ref=e131]:
+                  - link "Reddit interview questions" [ref=e132] [cursor=pointer]:
+                    - /url: /companies/reddit-front-end-interview-questions
+                - listitem [ref=e133]:
+                  - link "Twitter interview questions" [ref=e134] [cursor=pointer]:
+                    - /url: /companies/twitter-front-end-interview-questions
+                - listitem [ref=e135]:
+                  - link "Dropbox interview questions" [ref=e136] [cursor=pointer]:
+                    - /url: /companies/dropbox-front-end-interview-questions
+                - listitem [ref=e137]:
+                  - link "Lyft interview questions" [ref=e138] [cursor=pointer]:
+                    - /url: /companies/lyft-front-end-interview-questions
+                - listitem [ref=e139]:
+                  - link "Canva interview questions" [ref=e140] [cursor=pointer]:
+                    - /url: /companies/canva-front-end-interview-questions
+                - listitem [ref=e141]:
+                  - link "Discord interview questions" [ref=e142] [cursor=pointer]:
+                    - /url: /companies/discord-front-end-interview-questions
+                - listitem [ref=e143]:
+                  - link "Rippling interview questions" [ref=e144] [cursor=pointer]:
+                    - /url: /companies/rippling-front-end-interview-questions
+                - listitem [ref=e145]:
+                  - link "Robinhood interview questions" [ref=e146] [cursor=pointer]:
+                    - /url: /companies/robinhood-front-end-interview-questions
+                - listitem [ref=e147]:
+                  - link "Squarespace interview questions" [ref=e148] [cursor=pointer]:
+                    - /url: /companies/squarespace-front-end-interview-questions
+                - listitem [ref=e149]:
+                  - link "Mozilla interview questions" [ref=e150] [cursor=pointer]:
+                    - /url: /companies/mozilla-front-end-interview-questions
+        - button "Collapse sidebar" [ref=e151] [cursor=pointer]:
+          - img [ref=e152]
+    - main [ref=e156]:
+      - generic [ref=e158]:
+        - generic [ref=e160]:
+          - article [ref=e161]:
+            - navigation "Breadcrumbs" [ref=e162]:
+              - list [ref=e163]:
+                - listitem [ref=e164]:
+                  - link "Home page" [ref=e165] [cursor=pointer]:
+                    - /url: /
+                    - img [ref=e166]
+                - listitem [ref=e168]:
+                  - generic [ref=e169]: Coding interview
+                - listitem [ref=e170]:
+                  - generic [ref=e171]: Algorithms coding
+            - generic [ref=e172]:
+              - heading "Algorithms Interview Questions (Machine Coding) in Front End Interviews" [level=1] [ref=e174]
+              - iframe [ref=e176]:
+                - generic [active]:
+                  - generic:
+                    - link "Star yangshun/front-end-interview-handbook on GitHub" [ref=f1e1] [cursor=pointer]:
+                      - /url: https://github.com/yangshun/front-end-interview-handbook
+                      - text: Star
+                    - link "43,968 stargazers on GitHub" [ref=f1e3] [cursor=pointer]:
+                      - /url: https://github.com/yangshun/front-end-interview-handbook/stargazers
+                      - text: 43,968
+              - generic [ref=e177]:
+                - generic [ref=e178]:
+                  - img [ref=e180]
+                  - text: Latest version on GreatFrontEnd
+                - paragraph [ref=e183]:
+                  - text: Find the latest version of this page on
+                  - link "GreatFrontEnd's Front End Interview Playbook↗" [ref=e184] [cursor=pointer]:
+                    - /url: https://www.greatfrontend.com/front-end-interview-playbook/algorithms?utm_source=frontendinterviewhandbook&utm_medium=referral&gnrs=frontendinterviewhandbook
+                  - text: .
+              - paragraph [ref=e185]: Front End Engineers are also Software Engineers after all, and it's expected that Front End Engineers have basic competency in algorithms and data structures. It is reasonable and possible that you will be asked to solve algorithmic questions during your front end interviews.
+              - paragraph [ref=e186]: That said, companies tend to go easy on Front End Engineer candidates when it comes to algorithms questions; you most likely won't get very tough or obscure algorithm problems.
+              - paragraph [ref=e187]: Other than the common data structures like arrays, sets, and maps, trees are a commonly-encountered data structure in front end development because the DOM is a tree, so if you have to prioritize, definitely focus on being good at tree data structures and common traversal algorithms for trees, such as breadth-first search, depth-first search, and level-first traversal.
+              - paragraph [ref=e188]:
+                - text: The
+                - link "Tech Interview Handbook↗" [ref=e189] [cursor=pointer]:
+                  - /url: https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/
+                - text: goes into great detail about preparing for Algorithms questions.
+              - link "Go to Tech Interview Handbook →" [ref=e190] [cursor=pointer]:
+                - /url: https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/
+              - heading "Free practice questionsDirect link to Free practice questions" [level=2] [ref=e191]:
+                - text: Free practice questions
+                - link "Direct link to Free practice questions" [ref=e192] [cursor=pointer]:
+                  - /url: "#free-practice-questions"
+                  - text: "#"
+              - heading "GreatFrontEndDirect link to GreatFrontEnd" [level=3] [ref=e193]:
+                - text: GreatFrontEnd
+                - link "Direct link to GreatFrontEnd" [ref=e194] [cursor=pointer]:
+                  - /url: "#greatfrontend"
+                  - text: "#"
+              - paragraph [ref=e195]:
+                - link "GreatFrontEnd↗" [ref=e196] [cursor=pointer]:
+                  - /url: https://www.greatfrontend.com?utm_source=frontendinterviewhandbook&utm_medium=referral&gnrs=frontendinterviewhandbook
+                - text: provides
+                - strong [ref=e197]: free
+                - text: questions for you to practice implementing
+                - link "Data Structures and Algorithms↗" [ref=e198] [cursor=pointer]:
+                  - /url: https://www.greatfrontend.com/questions/formats/algo-coding?utm_source=frontendinterviewhandbook&utm_medium=referral&gnrs=frontendinterviewhandbook
+                - text: in JavaScript/TypeScript. You can practice implementing common data structures (e.g.
+                - link "Stacks↗" [ref=e199] [cursor=pointer]:
+                  - /url: https://www.greatfrontend.com/questions/algo/stack?utm_source=frontendinterviewhandbook&utm_medium=referral&gnrs=frontendinterviewhandbook
+                - text: ","
+                - link "Queues↗" [ref=e200] [cursor=pointer]:
+                  - /url: https://www.greatfrontend.com/questions/algo/queue?utm_source=frontendinterviewhandbook&utm_medium=referral&gnrs=frontendinterviewhandbook
+                - text: ) and algorithms (e.g.
+                - link "Binary Search↗" [ref=e201] [cursor=pointer]:
+                  - /url: https://www.greatfrontend.com/questions/algo/binary-search?utm_source=frontendinterviewhandbook&utm_medium=referral&gnrs=frontendinterviewhandbook
+                - text: ","
+                - link "Merge Sort↗" [ref=e202] [cursor=pointer]:
+                  - /url: https://www.greatfrontend.com/questions/algo/merge-sort?utm_source=frontendinterviewhandbook&utm_medium=referral&gnrs=frontendinterviewhandbook
+                - text: ).
+              - paragraph [ref=e203]:
+                - link "Check out GreatFrontEnd↗" [ref=e204] [cursor=pointer]:
+                  - /url: https://www.greatfrontend.com/questions/javascript-dsa-interview-questions?utm_source=frontendinterviewhandbook&utm_medium=referral&gnrs=frontendinterviewhandbook
+                  - strong [ref=e205]: Check out GreatFrontEnd
+                  - text: ↗
+              - heading "Algorithm coursesDirect link to Algorithm courses" [level=2] [ref=e206]:
+                - text: Algorithm courses
+                - link "Direct link to Algorithm courses" [ref=e207] [cursor=pointer]:
+                  - /url: "#algorithm-courses"
+                  - text: "#"
+              - heading "AlgoMonster↗Direct link to algomonster" [level=3] [ref=e208]:
+                - link "AlgoMonster↗" [ref=e209] [cursor=pointer]:
+                  - /url: https://shareasale.com/r.cfm?b=1873647&u=3114753&m=114505&urllink=&afftrack=
+                - link "Direct link to algomonster" [ref=e210] [cursor=pointer]:
+                  - /url: "#algomonster"
+                  - text: "#"
+              - paragraph [ref=e211]:
+                - text: AlgoMonster aims to help you ace the technical interview
+                - strong [ref=e212]: in the shortest time possible
+                - text: . By Google engineers, AlgoMonster uses a data-driven approach to teach you the most useful key question patterns and has contents to help you quickly revise basic data structures and algorithms. Best of all, AlgoMonster is not subscription-based - pay a one-time fee and get
+                - strong [ref=e213]: lifetime access
+                - text: .
+              - paragraph [ref=e214]:
+                - link "Check out AlgoMonster↗" [ref=e215] [cursor=pointer]:
+                  - /url: https://shareasale.com/r.cfm?b=1873647&u=3114753&m=114505&urllink=&afftrack=
+                  - strong [ref=e216]: Check out AlgoMonster
+                  - text: ↗
+              - 'heading "Grokking the Coding Interview: Patterns for Coding Questions↗Direct link to grokking-the-coding-interview-patterns-for-coding-questions" [level=3] [ref=e217]':
+                - 'link "Grokking the Coding Interview: Patterns for Coding Questions↗" [ref=e218] [cursor=pointer]':
+                  - /url: https://designgurus.org/link/kJSIoU?url=https%3A%2F%2Fdesigngurus.org%2Fcourse%3Fcourseid%3Dgrokking-the-coding-interview
+                - link "Direct link to grokking-the-coding-interview-patterns-for-coding-questions" [ref=e219] [cursor=pointer]:
+                  - /url: "#grokking-the-coding-interview-patterns-for-coding-questions"
+                  - text: "#"
+              - paragraph [ref=e220]:
+                - text: This course by Design Gurus expands upon the questions on the recommended practice questions but approaches the practicing from a questions pattern perspective, which is an approach I also agree with for learning and have personally used to get better at coding interviews. The course allows you to practice selected questions in Java, Python, C++, JavaScript and also provides sample solutions in those languages.
+                - strong [ref=e221]: Learn and understand patterns, not memorize answers!
+              - paragraph [ref=e222]:
+                - link "Check out Grokking the Coding Interview↗" [ref=e223] [cursor=pointer]:
+                  - /url: https://designgurus.org/link/kJSIoU?url=https%3A%2F%2Fdesigngurus.org%2Fcourse%3Fcourseid%3Dgrokking-the-coding-interview
+                  - strong [ref=e224]: Check out Grokking the Coding Interview
+                  - text: ↗
+              - heading "JavaScript coursesDirect link to JavaScript courses" [level=2] [ref=e225]:
+                - text: JavaScript courses
+                - link "Direct link to JavaScript courses" [ref=e226] [cursor=pointer]:
+                  - /url: "#javascript-courses"
+                  - text: "#"
+              - paragraph [ref=e227]: If you want more structured algorithms practice which are targeted at JavaScript, check out the following courses.
+              - table [ref=e228]:
+                - rowgroup [ref=e229]:
+                  - row "Course Platform Reviews Duration Price Contents" [ref=e230]:
+                    - columnheader "Course" [ref=e231]
+                    - columnheader "Platform" [ref=e232]
+                    - columnheader "Reviews" [ref=e233]
+                    - columnheader "Duration" [ref=e234]
+                    - columnheader "Price" [ref=e235]
+                    - columnheader "Contents" [ref=e236]
+                - rowgroup [ref=e237]:
+                  - row "Ace the JavaScript Coding Interview↗ Educative - 87h $ Basic data structures and algorithms, system design, object-oriented design" [ref=e238]:
+                    - cell "Ace the JavaScript Coding Interview↗" [ref=e239]:
+                      - link "Ace the JavaScript Coding Interview↗" [ref=e240] [cursor=pointer]:
+                        - /url: https://www.educative.io/path/ace-javascript-coding-interview?aff=x23W
+                    - cell "Educative" [ref=e241]
+                    - cell "-" [ref=e242]
+                    - cell "87h" [ref=e243]
+                    - cell "$" [ref=e244]
+                    - cell "Basic data structures and algorithms, system design, object-oriented design" [ref=e245]
+                  - 'row "Master the Coding Interview: Data Structures + Algorithms↗ Udemy 4.6/5 19.5h $$ Basic data structures and algorithms, job application, behavioral interview, negotiation" [ref=e246]':
+                    - 'cell "Master the Coding Interview: Data Structures + Algorithms↗" [ref=e247]':
+                      - 'link "Master the Coding Interview: Data Structures + Algorithms↗" [ref=e248] [cursor=pointer]':
+                        - /url: https://www.udemy.com/course/master-the-coding-interview-data-structures-algorithms
+                    - cell "Udemy" [ref=e249]
+                    - cell "4.6/5" [ref=e250]
+                    - cell "19.5h" [ref=e251]
+                    - cell "$$" [ref=e252]
+                    - cell "Basic data structures and algorithms, job application, behavioral interview, negotiation" [ref=e253]
+                  - row "JavaScript Data Structures and Algorithms Masterclass↗ Udemy 4.5/5 45h $ Basic and advanced data structures and algorithms" [ref=e254]:
+                    - cell "JavaScript Data Structures and Algorithms Masterclass↗" [ref=e255]:
+                      - link "JavaScript Data Structures and Algorithms Masterclass↗" [ref=e256] [cursor=pointer]:
+                        - /url: https://www.udemy.com/course/js-algorithms-and-data-structures-masterclass
+                    - cell "Udemy" [ref=e257]
+                    - cell "4.5/5" [ref=e258]
+                    - cell "45h" [ref=e259]
+                    - cell "$" [ref=e260]
+                    - cell "Basic and advanced data structures and algorithms" [ref=e261]
+            - generic [ref=e263]:
+              - link "Edit this page" [ref=e265] [cursor=pointer]:
+                - /url: https://github.com/yangshun/front-end-interview-handbook/edit/main/website/contents/algorithms.md
+                - img [ref=e266]
+                - text: Edit this page
+              - generic [ref=e270]:
+                - text: Last updated on
+                - time [ref=e272]: May 28, 2026
+                - text: by Yangshun
+          - navigation "Docs pages" [ref=e273]:
+            - link "Previous « User interface coding" [ref=e274] [cursor=pointer]:
+              - /url: /coding/build-front-end-user-interfaces
+              - generic [ref=e275]: Previous
+              - generic [ref=e276]: « User interface coding
+            - link "Next Overview »" [ref=e277] [cursor=pointer]:
+              - /url: /trivia
+              - generic [ref=e278]: Next
+              - generic [ref=e279]: Overview »
+        - generic [ref=e281]:
+          - link "Navigate front end interviews easily with GreatFrontEnd Meet the front end interview prep platform built by ex-FAANG senior engineers to make your life much easier" [ref=e283] [cursor=pointer]:
+            - /url: https://www.greatfrontend.com?utm_source=frontendinterviewhandbook&utm_medium=referral&utm_content=table_of_contents&gnrs=frontendinterviewhandbook
+            - generic [ref=e284]:
+              - generic [ref=e285]: Navigate front end interviews easily with GreatFrontEnd
+              - text: Meet the front end interview prep platform built by ex-FAANG senior engineers to make your life much easier
+          - heading "Table of Contents" [level=3] [ref=e286]
+          - list [ref=e287]:
+            - listitem [ref=e288]:
+              - link "Free practice questions" [ref=e289] [cursor=pointer]:
+                - /url: "#free-practice-questions"
+              - list [ref=e290]:
+                - listitem [ref=e291]:
+                  - link "GreatFrontEnd" [ref=e292] [cursor=pointer]:
+                    - /url: "#greatfrontend"
+            - listitem [ref=e293]:
+              - link "Algorithm courses" [ref=e294] [cursor=pointer]:
+                - /url: "#algorithm-courses"
+              - list [ref=e295]:
+                - listitem [ref=e296]:
+                  - link "AlgoMonster" [ref=e297] [cursor=pointer]:
+                    - /url: "#algomonster"
+                - listitem [ref=e298]:
+                  - 'link "Grokking the Coding Interview: Patterns for Coding Questions" [ref=e299] [cursor=pointer]':
+                    - /url: "#grokking-the-coding-interview-patterns-for-coding-questions"
+            - listitem [ref=e300]:
+              - link "JavaScript courses" [ref=e301] [cursor=pointer]:
+                - /url: "#javascript-courses"
+  - contentinfo [ref=e302]:
+    - generic [ref=e303]:
+      - generic [ref=e304]:
+        - generic [ref=e305]:
+          - generic [ref=e306]: General
+          - list [ref=e307]:
+            - listitem [ref=e308]:
+              - link "Get started" [ref=e309] [cursor=pointer]:
+                - /url: /introduction
+            - listitem [ref=e310]:
+              - link "Trivia questions" [ref=e311] [cursor=pointer]:
+                - /url: /trivia
+            - listitem [ref=e312]:
+              - link "Company questions" [ref=e313] [cursor=pointer]:
+                - /url: /company-interview-questions
+            - listitem [ref=e314]:
+              - link "Blog" [ref=e315] [cursor=pointer]:
+                - /url: /blog
+        - generic [ref=e316]:
+          - generic [ref=e317]: Coding
+          - list [ref=e318]:
+            - listitem [ref=e319]:
+              - link "Algorithms" [ref=e320] [cursor=pointer]:
+                - /url: /coding/algorithms
+            - listitem [ref=e321]:
+              - link "JavaScript utility functions" [ref=e322] [cursor=pointer]:
+                - /url: /coding/javascript-utility-function
+            - listitem [ref=e323]:
+              - link "User interfaces" [ref=e324] [cursor=pointer]:
+                - /url: /coding/build-front-end-user-interfaces
+        - generic [ref=e325]:
+          - generic [ref=e326]: System design
+          - list [ref=e327]:
+            - listitem [ref=e328]:
+              - link "System design overview" [ref=e329] [cursor=pointer]:
+                - /url: /front-end-system-design
+            - listitem [ref=e330]:
+              - link "User interface components" [ref=e331] [cursor=pointer]:
+                - /url: /front-end-system-design/ui-components
+            - listitem [ref=e332]:
+              - link "Applications" [ref=e333] [cursor=pointer]:
+                - /url: /front-end-system-design/applications
+        - generic [ref=e334]:
+          - generic [ref=e335]: More
+          - list [ref=e336]:
+            - listitem [ref=e337]:
+              - link "GreatFrontEnd" [ref=e338] [cursor=pointer]:
+                - /url: https://www.greatfrontend.com?utm_source=frontendinterviewhandbook&utm_medium=referral&utm_content=banner&gnrs=frontendinterviewhandbook
+                - text: GreatFrontEnd
+                - img [ref=e339]
+            - listitem [ref=e341]:
+              - link "GitHub" [ref=e342] [cursor=pointer]:
+                - /url: https://github.com/yangshun/front-end-interview-handbook
+                - text: GitHub
+                - img [ref=e343]
+            - listitem [ref=e345]:
+              - link "X" [ref=e346] [cursor=pointer]:
+                - /url: https://x.com/greatfrontend
+                - text: X
+                - img [ref=e347]
+            - listitem [ref=e349]:
+              - link "Discord" [ref=e350] [cursor=pointer]:
+                - /url: https://discord.com/invite/NDFx8f6P6B
+                - text: Discord
+                - img [ref=e351]
+            - listitem [ref=e353]:
+              - link "Contact us" [ref=e354] [cursor=pointer]:
+                - /url: mailto:contact@greatfrontend.com
+                - text: Contact us
+                - img [ref=e355]
+            - listitem [ref=e357]:
+              - link "Tech Interview Handbook" [ref=e358] [cursor=pointer]:
+                - /url: https://www.techinterviewhandbook.org
+                - text: Tech Interview Handbook
+                - img [ref=e359]
+      - generic [ref=e362]: Copyright © 2026 Yangshun Tay and GreatFrontEnd

@@ -1,0 +1,195 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "🪴 Sinaiticus" [ref=e3] [cursor=pointer]:
+      - /url: /
+    - link "🔍 Buscar" [ref=e4] [cursor=pointer]:
+      - /url: /search/
+  - generic [ref=e5]:
+    - complementary [ref=e6]:
+      - navigation [ref=e7]:
+        - paragraph [ref=e8]: Geral
+        - list [ref=e9]:
+          - listitem [ref=e10]:
+            - link "Início" [ref=e11] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e12]:
+            - link "Buscar" [ref=e13] [cursor=pointer]:
+              - /url: /search/
+        - paragraph [ref=e14]: Plano de Estudos
+        - list [ref=e15]:
+          - listitem [ref=e16]:
+            - link "Inglês Técnico para Entrevistas e Cliente" [ref=e17] [cursor=pointer]:
+              - /url: /notas/technical-english/
+          - listitem [ref=e18]:
+            - link "N-iX — Preparação para Entrevista (Lead Fullstack)" [ref=e19] [cursor=pointer]:
+              - /url: /notas/nix-interview-prep/
+          - listitem [ref=e20]:
+            - link "Plano de Estudos — Gaps da Entrevista (React Fullstack Lead)" [ref=e21] [cursor=pointer]:
+              - /url: /notas/study-plan-gaps/
+        - paragraph [ref=e22]: Frontend
+        - list [ref=e23]:
+          - listitem [ref=e24]:
+            - link "Advanced React & TypeScript Patterns" [ref=e25] [cursor=pointer]:
+              - /url: /notas/advanced-react-patterns/
+          - listitem [ref=e26]:
+            - link "Code-Splitting em React (reduzir bundle inicial)" [ref=e27] [cursor=pointer]:
+              - /url: /notas/react-code-splitting/
+          - listitem [ref=e28]:
+            - link "Comunicação entre Micro-frontends" [ref=e29] [cursor=pointer]:
+              - /url: /notas/microfrontend-communication/
+          - listitem [ref=e30]:
+            - link "Frontend Testing Practices" [ref=e31] [cursor=pointer]:
+              - /url: /notas/frontend-testing-practices/
+          - listitem [ref=e32]:
+            - link "React Performance Optimization" [ref=e33] [cursor=pointer]:
+              - /url: /notas/react-performance/
+          - listitem [ref=e34]:
+            - link "Testando Componente React que Busca Dados no Mount" [ref=e35] [cursor=pointer]:
+              - /url: /notas/testing-react-data-fetching/
+          - listitem [ref=e36]:
+            - link "Versionamento de Biblioteca de Componentes (adoção segura em MFEs)" [ref=e37] [cursor=pointer]:
+              - /url: /notas/shared-component-library-versioning/
+        - paragraph [ref=e38]: Backend
+        - list [ref=e39]:
+          - listitem [ref=e40]:
+            - link "Cadeia de Middlewares no Express (auth, rate limit, validação)" [ref=e41] [cursor=pointer]:
+              - /url: /notas/express-middleware-chain/
+          - listitem [ref=e42]:
+            - link "Endpoint Node.js Responsivo sob Alta Concorrência" [ref=e43] [cursor=pointer]:
+              - /url: /notas/nodejs-high-concurrency/
+          - listitem [ref=e44]:
+            - link "Node.js Runtime Internals" [ref=e45] [cursor=pointer]:
+              - /url: /notas/nodejs-runtime-internals/
+        - paragraph [ref=e46]: DevOps
+        - list [ref=e47]:
+          - listitem [ref=e48]:
+            - link "Pipeline CI/CD no Azure DevOps (test, artifact, coverage gates)" [ref=e49] [cursor=pointer]:
+              - /url: /notas/azure-devops-cicd-pipeline/
+        - paragraph [ref=e50]: Snippets
+        - list [ref=e51]:
+          - listitem [ref=e52]:
+            - link "Closures" [ref=e53] [cursor=pointer]:
+              - /url: /notas/closures/
+          - listitem [ref=e54]:
+            - link "Comandos Git" [ref=e55] [cursor=pointer]:
+              - /url: /notas/git-commands/
+          - listitem [ref=e56]:
+            - link "Decorators em Python" [ref=e57] [cursor=pointer]:
+              - /url: /notas/python-decorators/
+    - main [ref=e58]:
+      - article [ref=e59]:
+        - heading "Plano de Estudos — Gaps da Entrevista (React Fullstack Lead)" [level=1] [ref=e60]
+        - paragraph [ref=e61]:
+          - text: MOC do plano de estudos derivado do feedback da entrevista para
+          - strong [ref=e62]: React Fullstack Software Development Lead
+          - text: . Cada lacuna virou uma trilha de estudo focada.
+        - blockquote [ref=e63]:
+          - paragraph [ref=e64]:
+            - text: "Feedback (resumo): “the position requires deeper expertise in several key areas, particularly around"
+            - strong [ref=e65]: advanced React and TypeScript patterns
+            - text: ","
+            - strong [ref=e66]: React-specific performance optimization techniques
+            - text: ","
+            - strong [ref=e67]: frontend testing practices
+            - text: ", and"
+            - strong [ref=e68]: Node.js runtime internals
+            - text: . Additionally, the role involves frequent technical discussions in
+            - strong [ref=e69]: English
+            - text: with the client.”
+        - heading "Trilhas (por prioridade)" [level=2] [ref=e70]
+        - table [ref=e71]:
+          - rowgroup [ref=e72]:
+            - row "# Lacuna Nota Categoria" [ref=e73]:
+              - columnheader "#" [ref=e74]
+              - columnheader "Lacuna" [ref=e75]
+              - columnheader "Nota" [ref=e76]
+              - columnheader "Categoria" [ref=e77]
+          - rowgroup [ref=e78]:
+            - row "1 Advanced React + TS patterns advanced-react-patterns Frontend" [ref=e79]:
+              - cell "1" [ref=e80]
+              - cell "Advanced React + TS patterns" [ref=e81]
+              - cell "advanced-react-patterns" [ref=e82]:
+                - link "advanced-react-patterns" [ref=e83] [cursor=pointer]:
+                  - /url: /notas/advanced-react-patterns/
+              - cell "Frontend" [ref=e84]
+            - row "2 React performance react-performance Frontend" [ref=e85]:
+              - cell "2" [ref=e86]
+              - cell "React performance" [ref=e87]
+              - cell "react-performance" [ref=e88]:
+                - link "react-performance" [ref=e89] [cursor=pointer]:
+                  - /url: /notas/react-performance/
+              - cell "Frontend" [ref=e90]
+            - row "3 Frontend testing frontend-testing-practices Frontend" [ref=e91]:
+              - cell "3" [ref=e92]
+              - cell "Frontend testing" [ref=e93]
+              - cell "frontend-testing-practices" [ref=e94]:
+                - link "frontend-testing-practices" [ref=e95] [cursor=pointer]:
+                  - /url: /notas/frontend-testing-practices/
+              - cell "Frontend" [ref=e96]
+            - row "4 Node.js runtime internals nodejs-runtime-internals Backend" [ref=e97]:
+              - cell "4" [ref=e98]
+              - cell "Node.js runtime internals" [ref=e99]
+              - cell "nodejs-runtime-internals" [ref=e100]:
+                - link "nodejs-runtime-internals" [ref=e101] [cursor=pointer]:
+                  - /url: /notas/nodejs-runtime-internals/
+              - cell "Backend" [ref=e102]
+            - row "5 Inglês técnico technical-english Plano de Estudos" [ref=e103]:
+              - cell "5" [ref=e104]
+              - cell "Inglês técnico" [ref=e105]
+              - cell "technical-english" [ref=e106]:
+                - link "technical-english" [ref=e107] [cursor=pointer]:
+                  - /url: /notas/technical-english/
+              - cell "Plano de Estudos" [ref=e108]
+        - heading "Como usar" [level=2] [ref=e109]
+        - list [ref=e110]:
+          - listitem [ref=e111]:
+            - text: Cada trilha lista
+            - strong [ref=e112]: tópicos a dominar
+            - text: ", exemplos e"
+            - strong [ref=e113]: perguntas de entrevista
+            - text: .
+          - listitem [ref=e114]:
+            - text: As trilhas se conectam às notas que já existem da preparação anterior (ver
+            - link "índice N-iX" [ref=e115] [cursor=pointer]:
+              - /url: /notas/nix-interview-prep/
+            - text: ).
+          - listitem [ref=e116]: "Meta: cobrir 1 trilha a fundo por semana, escrevendo notas próprias e resolvendo exercícios."
+        - heading "Conexões com notas existentes" [level=2] [ref=e117]
+        - list [ref=e118]:
+          - listitem [ref=e119]:
+            - link "react-code-splitting" [ref=e120] [cursor=pointer]:
+              - /url: /notas/react-code-splitting/
+            - text: reforça
+            - link "react-performance" [ref=e121] [cursor=pointer]:
+              - /url: /notas/react-performance/
+            - text: .
+          - listitem [ref=e122]:
+            - link "testing-react-data-fetching" [ref=e123] [cursor=pointer]:
+              - /url: /notas/testing-react-data-fetching/
+            - text: é um caso prático de
+            - link "frontend-testing-practices" [ref=e124] [cursor=pointer]:
+              - /url: /notas/frontend-testing-practices/
+            - text: .
+          - listitem [ref=e125]:
+            - link "nodejs-high-concurrency" [ref=e126] [cursor=pointer]:
+              - /url: /notas/nodejs-high-concurrency/
+            - text: e
+            - link "express-middleware-chain" [ref=e127] [cursor=pointer]:
+              - /url: /notas/express-middleware-chain/
+            - text: apoiam
+            - link "nodejs-runtime-internals" [ref=e128] [cursor=pointer]:
+              - /url: /notas/nodejs-runtime-internals/
+            - text: .
+      - paragraph [ref=e130]: Construído com Eleventy · busca por Lunr.js
+    - complementary [ref=e131]:
+      - paragraph [ref=e132]: Nesta página
+      - list [ref=e133]:
+        - listitem [ref=e134]:
+          - link "Trilhas (por prioridade)" [ref=e135] [cursor=pointer]:
+            - /url: "#trilhas-por-prioridade"
+        - listitem [ref=e136]:
+          - link "Como usar" [ref=e137] [cursor=pointer]:
+            - /url: "#como-usar"
+        - listitem [ref=e138]:
+          - link "Conexões com notas existentes" [ref=e139] [cursor=pointer]:
+            - /url: "#conex-es-com-notas-existentes"

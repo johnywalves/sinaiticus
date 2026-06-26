@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title or "Sinaiticus" }}</title>
+    <meta name="description" content="{{ description or 'Jardim digital em Markdown.' }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">🪴 Sinaiticus</a>
+      <a class="search-link" href="/search/">🔍 Buscar</a>
+    </header>
+
+    <div class="layout">
+      <!-- Navegação (esquerda) -->
+      <aside class="sidebar">
+        <nav>
+          <p class="nav-group">Geral</p>
+          <ul>
+            <li><a href="/" {% if page.url == "/" %}class="active"{% endif %}>Início</a></li>
+            <li><a href="/search/" {% if page.url == "/search/" %}class="active"{% endif %}>Buscar</a></li>
+          </ul>
+          {%- for group in collections.notasByCategory %}
+          <p class="nav-group">{{ group.category }}</p>
+          <ul>
+            {%- for nota in group.notes %}
+            <li>
+              <a href="{{ nota.url }}" {% if nota.url == page.url %}class="active"{% endif %}>
+                {{ nota.data.title }}
+              </a>
+            </li>
+            {%- endfor %}
+          </ul>
+          {%- endfor %}
+        </nav>
+      </aside>
+
+      <!-- Conteúdo (centro) -->
+      <main>
+        <article class="note">
+          <h1>{{ title }}</h1>
+          {{ content | safe }}
+        </article>
+
+        {%- set incoming = backlinks[page.fileSlug] -%}
+        {%- if incoming and incoming.length > 0 %}
+        <aside class="backlinks">
+          <h2>↩ Mencionada em</h2>
+          <ul>
+            {%- for link in incoming %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endfor %}
+          </ul>
+        </aside>
+        {%- endif %}
+
+        <footer class="site-footer">
+          <p>Construído com Eleventy · busca por Lunr.js</p>
+        </footer>
+      </main>
+
+      <!-- Índice da página / TOC (direita) -->
+      <aside class="toc" id="toc" hidden>
+        <p class="nav-group">Nesta página</p>
+        <ul id="toc-list"></ul>
+      </aside>
+    </div>
+
+    <script>
+      // Gera o índice (TOC) a partir dos h2/h3 do conteúdo.
+      (function () {
+        const article = document.querySelector(".note");
+        const toc = document.getElementById("toc");
+        const list = document.getElementById("toc-list");
+        if (!article || !toc || !list) return;
+        const headings = article.querySelectorAll("h2, h3");
+        if (headings.length < 2) return;
+
+        headings.forEach((h, i) => {
+          if (!h.id) {
+            h.id =
+              h.textContent
+                .toLowerCase()
+                .trim()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-+|-+$/g, "") || "sec-" + i;
+          }
+          const li = document.createElement("li");
+          li.className = h.tagName === "H3" ? "toc-sub" : "";
+          const a = document.createElement("a");
+          a.href = "#" + h.id;
+          a.textContent = h.textContent;
+          li.appendChild(a);
+          list.appendChild(li);
+        });
+        toc.hidden = false;
+      })();
+    </script>
+  </body>
+</html>

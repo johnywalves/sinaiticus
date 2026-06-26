@@ -1,0 +1,153 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "🪴 Sinaiticus" [ref=e3] [cursor=pointer]:
+      - /url: /
+    - link "🔍 Buscar" [ref=e4] [cursor=pointer]:
+      - /url: /search/
+  - generic [ref=e5]:
+    - complementary [ref=e6]:
+      - navigation [ref=e7]:
+        - paragraph [ref=e8]: Geral
+        - list [ref=e9]:
+          - listitem [ref=e10]:
+            - link "Início" [ref=e11] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e12]:
+            - link "Buscar" [ref=e13] [cursor=pointer]:
+              - /url: /search/
+        - paragraph [ref=e14]: Notas
+        - list [ref=e15]:
+          - listitem [ref=e16]:
+            - link "Cadeia de Middlewares no Express (auth, rate limit, validação)" [ref=e17] [cursor=pointer]:
+              - /url: /notas/express-middleware-chain/
+          - listitem [ref=e18]:
+            - link "Closures" [ref=e19] [cursor=pointer]:
+              - /url: /notas/closures/
+          - listitem [ref=e20]:
+            - link "Code-Splitting em React (reduzir bundle inicial)" [ref=e21] [cursor=pointer]:
+              - /url: /notas/react-code-splitting/
+          - listitem [ref=e22]:
+            - link "Comandos Git" [ref=e23] [cursor=pointer]:
+              - /url: /notas/git-commands/
+          - listitem [ref=e24]:
+            - link "Comunicação entre Micro-frontends" [ref=e25] [cursor=pointer]:
+              - /url: /notas/microfrontend-communication/
+          - listitem [ref=e26]:
+            - link "Decorators em Python" [ref=e27] [cursor=pointer]:
+              - /url: /notas/python-decorators/
+          - listitem [ref=e28]:
+            - link "Endpoint Node.js Responsivo sob Alta Concorrência" [ref=e29] [cursor=pointer]:
+              - /url: /notas/nodejs-high-concurrency/
+          - listitem [ref=e30]:
+            - link "N-iX — Preparação para Entrevista (Lead Fullstack)" [ref=e31] [cursor=pointer]:
+              - /url: /notas/nix-interview-prep/
+          - listitem [ref=e32]:
+            - link "Pipeline CI/CD no Azure DevOps (test, artifact, coverage gates)" [ref=e33] [cursor=pointer]:
+              - /url: /notas/azure-devops-cicd-pipeline/
+          - listitem [ref=e34]:
+            - link "Testando Componente React que Busca Dados no Mount" [ref=e35] [cursor=pointer]:
+              - /url: /notas/testing-react-data-fetching/
+          - listitem [ref=e36]:
+            - link "Versionamento de Biblioteca de Componentes (adoção segura em MFEs)" [ref=e37] [cursor=pointer]:
+              - /url: /notas/shared-component-library-versioning/
+    - main [ref=e38]:
+      - article [ref=e39]:
+        - heading "Comunicação entre Micro-frontends" [level=1] [ref=e40]
+        - paragraph [ref=e41]: In a micro-frontend architecture, each MFE is an independently deployable application. They need to communicate without tight coupling. There are two primary patterns.
+        - heading "1. Event Bus (Pub-Sub)" [level=2] [ref=e42]
+        - list [ref=e43]:
+          - listitem [ref=e44]:
+            - strong [ref=e45]: "How it works:"
+            - text: MFEs publish and subscribe to events via a global event bus (e.g., using
+            - code [ref=e46]: window.dispatchEvent
+            - text: +
+            - code [ref=e47]: addEventListener
+            - text: ", or a library like"
+            - code [ref=e48]: mitt
+            - text: or
+            - code [ref=e49]: EventEmitter
+            - text: ).
+          - listitem [ref=e50]:
+            - strong [ref=e51]: "When to use:"
+            - text: For loosely coupled, broadcast-style communication — e.g., “user logged in”, “cart updated”, “theme changed”.
+          - listitem [ref=e52]:
+            - strong [ref=e53]: "Pros:"
+            - text: Decoupled, easy to add new listeners without modifying senders.
+          - listitem [ref=e54]:
+            - strong [ref=e55]: "Cons:"
+            - text: Harder to debug (events fire and forget), no type safety by default.
+        - code [ref=e57]: "// MFE A – publishes an event window.dispatchEvent(new CustomEvent('user:logout')); // MFE B – listens for the event window.addEventListener('user:logout', () => { // clear session, redirect, etc. });"
+        - heading "2. Shared State (Global Store)" [level=2] [ref=e58]
+        - list [ref=e59]:
+          - listitem [ref=e60]:
+            - strong [ref=e61]: "How it works:"
+            - text: MFEs share a single, centralized state (e.g., Redux, Zustand, or a simple observable object) that lives in the container/shell app.
+          - listitem [ref=e62]:
+            - strong [ref=e63]: "When to use:"
+            - text: For data that multiple MFEs need to read/write consistently — e.g., user profile, shopping cart, feature flags.
+          - listitem [ref=e64]:
+            - strong [ref=e65]: "Pros:"
+            - text: Predictable, type-safe, easier to debug (DevTools), single source of truth.
+          - listitem [ref=e66]:
+            - strong [ref=e67]: "Cons:"
+            - text: Couples MFEs to the store contract; changes to state shape affect all consumers.
+        - code [ref=e69]: "// Shared store (defined in the container) const useStore = create((set) => ({ user: null, setUser: (user) => set({ user }), })); // MFE A – sets the user useStore.getState().setUser(loggedInUser); // MFE B – reads the user const user = useStore((state) => state.user);"
+        - heading "My Approach (Real-World)" [level=2] [ref=e70]
+        - paragraph [ref=e71]:
+          - text: In
+          - strong [ref=e72]: Seguralta
+          - text: ", we combined both patterns:"
+        - list [ref=e73]:
+          - listitem [ref=e74]: Shared Redux store for application-wide data (user session, feature flags, tenant config).
+          - listitem [ref=e75]: Event bus for UI-level interactions (“open modal”, “refresh dashboard”, “toast notification”) — they didn’t need to persist in state and we didn’t want to pollute the store.
+        - heading "Key Considerations" [level=2] [ref=e76]
+        - list [ref=e77]:
+          - listitem [ref=e78]:
+            - strong [ref=e79]: "Versioning:"
+            - text: If the shared state contract changes, all MFEs need to update — ver
+            - link "versionamento da lib compartilhada" [ref=e80] [cursor=pointer]:
+              - /url: /notas/shared-component-library-versioning/
+            - text: .
+          - listitem [ref=e81]:
+            - strong [ref=e82]: "Lazy Loading:"
+            - text: "Avoid importing the entire store into every MFE — use selective slices. Relacionado:"
+            - link "code-splitting" [ref=e83] [cursor=pointer]:
+              - /url: /notas/react-code-splitting/
+            - text: .
+          - listitem [ref=e84]:
+            - strong [ref=e85]: "Testing:"
+            - text: Both patterns are testable; event bus requires spying on events, shared state can be mocked easily.
+        - separator [ref=e86]
+        - paragraph [ref=e87]:
+          - text: "Voltar ao índice:"
+          - link "N-iX — Preparação para Entrevista" [ref=e88] [cursor=pointer]:
+            - /url: /notas/nix-interview-prep/
+          - text: .
+      - complementary [ref=e89]:
+        - heading "↩ Mencionada em" [level=2] [ref=e90]
+        - list [ref=e91]:
+          - listitem [ref=e92]:
+            - link "Code-Splitting em React (reduzir bundle inicial)" [ref=e93] [cursor=pointer]:
+              - /url: /notas/react-code-splitting/
+          - listitem [ref=e94]:
+            - link "N-iX — Preparação para Entrevista (Lead Fullstack)" [ref=e95] [cursor=pointer]:
+              - /url: /notas/nix-interview-prep/
+          - listitem [ref=e96]:
+            - link "Versionamento de Biblioteca de Componentes (adoção segura em MFEs)" [ref=e97] [cursor=pointer]:
+              - /url: /notas/shared-component-library-versioning/
+      - paragraph [ref=e99]: Construído com Eleventy · busca por Lunr.js
+    - complementary [ref=e100]:
+      - paragraph [ref=e101]: Nesta página
+      - list [ref=e102]:
+        - listitem [ref=e103]:
+          - link "1. Event Bus (Pub-Sub)" [ref=e104] [cursor=pointer]:
+            - /url: "#1-event-bus-pub-sub"
+        - listitem [ref=e105]:
+          - link "2. Shared State (Global Store)" [ref=e106] [cursor=pointer]:
+            - /url: "#2-shared-state-global-store"
+        - listitem [ref=e107]:
+          - link "My Approach (Real-World)" [ref=e108] [cursor=pointer]:
+            - /url: "#my-approach-real-world"
+        - listitem [ref=e109]:
+          - link "Key Considerations" [ref=e110] [cursor=pointer]:
+            - /url: "#key-considerations"
