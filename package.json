@@ -1,5 +1,5 @@
 {
-  "name": "sinaiticus",
+  "name": "codex-gigas",
   "version": "0.1.0",
   "description": "Digital garden em Markdown com wikilinks, backlinks e busca offline (Eleventy + Lunr.js).",
   "type": "commonjs",

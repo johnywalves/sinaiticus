@@ -1,4 +1,4 @@
-# 🪴 Sinaiticus
+# 🪴 Codex Gigas
 
 Um **jardim digital** (digital garden / Zettelkasten) feito de arquivos
 Markdown interligados, gerado como site estático e hospedado no GitHub Pages.
@@ -56,6 +56,12 @@ Texto com um [[outra-nota]] ou [[outra-nota|texto exibido]].
 O wikilink aponta para o **nome do arquivo** (sem `.md`) convertido em slug.
 Ex.: `[[Python Decorators]]` e `[[python-decorators]]` resolvem para
 `/notas/python-decorators/`.
+
+Para manter o **nível e o padrão** das notas (front matter, estrutura,
+referenciabilidade), siga o [Guia de Escrita](GUIA-DE-ESCRITA.md). Há um
+esqueleto pronto em [`templates/nota.md`](templates/nota.md) e a skill
+[`escrever-nota`](.claude/skills/escrever-nota/SKILL.md) aplica/revisa o padrão
+automaticamente.
 
 ## Deploy no GitHub Pages
 
