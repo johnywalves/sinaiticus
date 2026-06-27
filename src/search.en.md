@@ -1,10 +1,10 @@
 ---
-title: Buscar
+title: Search
 layout: base.njk
-permalink: /search/
-lang: pt
-altLang: en
-altUrl: /en/search/
+permalink: /en/search/
+lang: en
+altLang: pt
+altUrl: /search/
 ---
 
 {%- set t = i18n[lang] -%}

@@ -12,7 +12,8 @@
   --code-bg: #161922;
   --sidebar-w: 16rem;
   --toc-w: 14rem;
-  --content-max: 46rem;
+  /* conteúdo ocupa toda a largura da coluna central (sem cap de leitura) */
+  --content-max: 100%;
   color-scheme: dark;
 }
 
@@ -26,8 +27,16 @@ html {
 
 body {
   margin: 0;
-  font-family: "Inter", "Inter var", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family:
+    "Inter",
+    "Inter var",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
   font-size: 16px;
   line-height: 1.7;
   color: var(--fg);
@@ -77,13 +86,33 @@ a:hover {
   border-color: var(--accent);
   text-decoration: none;
 }
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+/* Seletor de idioma (topo direito): mostra o código do OUTRO idioma. */
+.lang-toggle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.35rem 0.6rem;
+}
+.lang-toggle:hover {
+  color: var(--fg);
+  border-color: var(--accent);
+  text-decoration: none;
+}
 
 /* ---------- Layout 3 colunas ---------- */
 .layout {
   display: grid;
   grid-template-columns: var(--sidebar-w) minmax(0, 1fr) var(--toc-w);
   gap: 2rem;
-  max-width: 84rem;
+  max-width: 100rem;
   margin: 0 auto;
   padding: 0 1.5rem;
   align-items: start;

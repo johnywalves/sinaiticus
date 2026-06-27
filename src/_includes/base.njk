@@ -1,9 +1,15 @@
+{%- set lang = lang or "pt" -%}
+{%- set t = i18n[lang] -%}
+{%- set isEn = lang == "en" -%}
+{%- set homeUrl = "/en/" if isEn else "/" -%}
+{%- set searchUrl = "/en/search/" if isEn else "/search/" -%}
+{%- set groups = collections.notasByCategoryEn if isEn else collections.notasByCategoryPt -%}
 <!doctype html>
-<html lang="pt-BR">
+<html lang="{{ t.htmlLang }}">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ title or "Sinaiticus" }}</title>
+    <title>{{ title or "Codex Gigas" }}</title>
     <meta name="description" content="{{ description or 'Jardim digital em Markdown.' }}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,23 +21,30 @@
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="/">🪴 Sinaiticus</a>
-      <a class="search-link" href="/search/">🔍 Buscar</a>
+      <a class="brand" href="{{ homeUrl }}">{{ t.tagline }}</a>
+      <div class="header-actions">
+        <a class="search-link" href="{{ searchUrl }}">{{ t.searchLink }}</a>
+        {%- if altUrl %}
+        <a class="lang-toggle" href="{{ altUrl }}" title="{{ t.switchTo }}" hreflang="{{ altLang }}">
+          {{ altLang | upper }}
+        </a>
+        {%- endif %}
+      </div>
     </header>
 
     <div class="layout">
       <!-- Navegação (esquerda) -->
       <aside class="sidebar">
         <details class="nav-toggle" open>
-          <summary>☰ Navegação</summary>
+          <summary>{{ t.navLabel }}</summary>
         <nav>
-          <p class="nav-group">Geral</p>
+          <p class="nav-group">{{ t.navGeneral }}</p>
           <ul>
-            <li><a href="/" {% if page.url == "/" %}class="active"{% endif %}>Início</a></li>
-            <li><a href="/search/" {% if page.url == "/search/" %}class="active"{% endif %}>Buscar</a></li>
+            <li><a href="{{ homeUrl }}" {% if page.url == homeUrl %}class="active"{% endif %}>{{ t.navHome }}</a></li>
+            <li><a href="{{ searchUrl }}" {% if page.url == searchUrl %}class="active"{% endif %}>{{ t.navSearch }}</a></li>
           </ul>
-          {%- for group in collections.notasByCategory %}
-          <p class="nav-group">{{ group.category }}</p>
+          {%- for group in groups %}
+          <p class="nav-group">{{ t.categories[group.category] or group.category }}</p>
           <ul>
             {%- for nota in group.notes %}
             <li>
@@ -52,10 +65,10 @@
           {{ content | safe }}
         </article>
 
-        {%- set incoming = backlinks[page.fileSlug] -%}
+        {%- set incoming = backlinks[lang][conceptSlug] -%}
         {%- if incoming and incoming.length > 0 %}
         <aside class="backlinks">
-          <h2>↩ Mencionada em</h2>
+          <h2>{{ t.backlinks }}</h2>
           <ul>
             {%- for link in incoming %}
             <li><a href="{{ link.url }}">{{ link.title }}</a></li>
@@ -65,13 +78,13 @@
         {%- endif %}
 
         <footer class="site-footer">
-          <p>Construído com Eleventy · busca por Lunr.js</p>
+          <p>{{ t.footer }}</p>
         </footer>
       </main>
 
       <!-- Índice da página / TOC (direita) -->
       <aside class="toc" id="toc" hidden>
-        <p class="nav-group">Nesta página</p>
+        <p class="nav-group">{{ t.toc }}</p>
         <ul id="toc-list"></ul>
       </aside>
     </div>

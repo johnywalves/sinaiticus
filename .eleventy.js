@@ -1,7 +1,17 @@
+const path = require("path");
+const { globSync } = require("glob");
 const markdownIt = require("markdown-it");
 const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const { slugify, noteUrl } = require("./lib/wikilinks");
+const { slugify, noteUrl, parseFile } = require("./lib/wikilinks");
+
+// Slugs conceituais que possuem versão em inglês (src/notas/<slug>.en.md).
+// Usado pelo transform que localiza os wikilinks nas páginas EN.
+const EN_SLUGS = new Set(
+  globSync("src/notas/**/*.en.md").map(
+    (f) => parseFile(path.basename(f, ".md")).conceptSlug,
+  ),
+);
 
 /**
  * Plugin markdown-it: converte [[alvo]] e [[alvo|texto]] em links HTML
@@ -46,6 +56,19 @@ module.exports = function (eleventyConfig) {
   );
   eleventyConfig.setLibrary("md", md);
 
+  // Localiza wikilinks nas páginas EN: o plugin markdown-it é cego a idioma e
+  // sempre emite href="/notas/<slug>/". Aqui, só em páginas sob /en/, reescreve
+  // para /en/notas/<slug>/ quando existe contraparte EN; senão mantém o link PT
+  // (fallback por link). DEVE rodar antes do HtmlBasePlugin (que aplica o
+  // pathPrefix), senão o padrão "/notas/" não casaria mais.
+  eleventyConfig.addTransform("localizeWikilinks", function (content) {
+    if (!(this.page.outputPath || "").endsWith(".html")) return content;
+    if (!(this.page.url || "").startsWith("/en/")) return content;
+    return content.replace(/href="\/notas\/([^/"]+)\/"/g, (match, slug) =>
+      EN_SLUGS.has(slug) ? `href="/en/notas/${slug}/"` : match,
+    );
+  });
+
   // Reescreve URLs root-relative no HTML final para respeitar o pathPrefix.
   // Isso faz os wikilinks e links internos funcionarem em sites de projeto
   // do GitHub Pages (servidos em /<repo>/) sem precisar do filtro `url`.
@@ -59,11 +82,22 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/searchIndex.json": "searchIndex.json" });
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
 
-  // Coleção com todas as notas
-  eleventyConfig.addCollection("notas", (collectionApi) =>
-    collectionApi
+  // Idioma de uma nota a partir do nome do arquivo (sufixo .en).
+  const noteLang = (note) => parseFile(note.fileSlug).lang;
+  const byTitle = (a, b) => (a.data.title || "").localeCompare(b.data.title || "");
+
+  // Coleções de notas por idioma (usadas pela home e índices de cada locale).
+  eleventyConfig.addCollection("notasPt", (api) =>
+    api
       .getFilteredByGlob("src/notas/**/*.md")
-      .sort((a, b) => (a.data.title || "").localeCompare(b.data.title || "")),
+      .filter((n) => noteLang(n) === "pt")
+      .sort(byTitle),
+  );
+  eleventyConfig.addCollection("notasEn", (api) =>
+    api
+      .getFilteredByGlob("src/notas/**/*.md")
+      .filter((n) => noteLang(n) === "en")
+      .sort(byTitle),
   );
 
   // Notas agrupadas por categoria (para a sidebar), em ordem definida.
@@ -74,19 +108,14 @@ module.exports = function (eleventyConfig) {
     "DevOps",
     "Snippets",
   ];
-  eleventyConfig.addCollection("notasByCategory", (collectionApi) => {
-    const notes = collectionApi.getFilteredByGlob("src/notas/**/*.md");
+  const groupByCategory = (notes) => {
     const groups = {};
     for (const note of notes) {
       const cat = note.data.category || "Outros";
       if (!groups[cat]) groups[cat] = [];
       groups[cat].push(note);
     }
-    for (const cat of Object.keys(groups)) {
-      groups[cat].sort((a, b) =>
-        (a.data.title || "").localeCompare(b.data.title || ""),
-      );
-    }
+    for (const cat of Object.keys(groups)) groups[cat].sort(byTitle);
     const ordered = [];
     for (const cat of CATEGORY_ORDER) {
       if (groups[cat]) {
@@ -98,7 +127,17 @@ module.exports = function (eleventyConfig) {
       ordered.push({ category: cat, notes: groups[cat] });
     }
     return ordered;
-  });
+  };
+  eleventyConfig.addCollection("notasByCategoryPt", (api) =>
+    groupByCategory(
+      api.getFilteredByGlob("src/notas/**/*.md").filter((n) => noteLang(n) === "pt"),
+    ),
+  );
+  eleventyConfig.addCollection("notasByCategoryEn", (api) =>
+    groupByCategory(
+      api.getFilteredByGlob("src/notas/**/*.md").filter((n) => noteLang(n) === "en"),
+    ),
+  );
 
   return {
     dir: {

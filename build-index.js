@@ -16,7 +16,7 @@ const fs = require("fs");
 const path = require("path");
 const { globSync } = require("glob");
 const matter = require("gray-matter");
-const { slugify, extractWikilinks, noteUrl } = require("./lib/wikilinks");
+const { slugify, extractWikilinks, noteUrl, parseFile } = require("./lib/wikilinks");
 
 const ROOT = __dirname;
 const NOTAS_GLOB = path.join(ROOT, "src", "notas", "**", "*.md");
@@ -41,12 +41,17 @@ function readNotes() {
   return files.map((file) => {
     const raw = fs.readFileSync(file, "utf8");
     const { data, content } = matter(raw);
-    const slug = slugify(data.slug || path.basename(file, ".md"));
+    // O idioma vem do sufixo do arquivo (.en); o slug conceitual é compartilhado
+    // entre as duas línguas, então os grafos PT e EN ficam em paralelo.
+    const parsed = parseFile(path.basename(file, ".md"));
+    const lang = parsed.lang;
+    const slug = data.slug ? slugify(data.slug) : parsed.conceptSlug;
     const title = data.title || slug;
     return {
       file,
+      lang,
       slug,
-      url: noteUrl(slug),
+      url: noteUrl(slug, lang),
       title,
       tags: Array.isArray(data.tags) ? data.tags : data.tags ? [data.tags] : [],
       links: extractWikilinks(content),
@@ -56,20 +61,22 @@ function readNotes() {
 }
 
 function buildBacklinks(notes) {
-  const bySlug = new Map(notes.map((n) => [n.slug, n]));
-  const backlinks = {};
-  for (const note of notes) backlinks[note.slug] = [];
+  // Grafos paralelos por idioma: um backlink só conecta notas do mesmo idioma.
+  const backlinks = { pt: {}, en: {} };
+  const existing = { pt: new Set(), en: new Set() };
+  for (const note of notes) existing[note.lang].add(note.slug);
+  for (const note of notes) backlinks[note.lang][note.slug] = [];
 
   for (const note of notes) {
     const seen = new Set();
     for (const link of note.links) {
       if (seen.has(link.slug)) continue; // evita duplicar a mesma origem
       seen.add(link.slug);
-      if (!backlinks[link.slug]) {
-        // alvo ainda não existe como nota (link quebrado) — ignora no mapa
+      if (!backlinks[note.lang][link.slug]) {
+        // alvo não existe nesse idioma (cai no fallback ao renderizar) — ignora
         continue;
       }
-      backlinks[link.slug].push({
+      backlinks[note.lang][link.slug].push({
         slug: note.slug,
         title: note.title,
         url: note.url,
@@ -78,16 +85,18 @@ function buildBacklinks(notes) {
   }
 
   // ordena por título para uma saída estável
-  for (const slug of Object.keys(backlinks)) {
-    backlinks[slug].sort((a, b) => a.title.localeCompare(b.title));
+  for (const lang of Object.keys(backlinks)) {
+    for (const slug of Object.keys(backlinks[lang])) {
+      backlinks[lang][slug].sort((a, b) => a.title.localeCompare(b.title));
+    }
   }
 
-  // alerta sobre wikilinks quebrados (útil em CI)
+  // alerta sobre wikilinks de fato quebrados (alvo inexistente em qualquer idioma)
   for (const note of notes) {
     for (const link of note.links) {
-      if (!bySlug.has(link.slug)) {
+      if (!existing.pt.has(link.slug) && !existing.en.has(link.slug)) {
         console.warn(
-          `⚠  wikilink quebrado em "${note.slug}": [[${link.target}]] -> ${link.slug}`,
+          `⚠  wikilink quebrado em "${note.lang}/${note.slug}": [[${link.target}]] -> ${link.slug}`,
         );
       }
     }
@@ -101,6 +110,7 @@ function buildSearchDocs(notes) {
     id: n.url,
     title: n.title,
     tags: n.tags.join(" "),
+    lang: n.lang,
     body: n.text,
   }));
 }
