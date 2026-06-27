@@ -5,44 +5,54 @@ category: DevOps
 tags: [ci-cd, azure-devops, devops, interview]
 ---
 
-**Summary:** I structure the pipeline in stages: Build → Test → Quality Gates →
-Pack → Deploy. Each stage must pass before the next runs.
+Nota de [[nix-interview-prep|preparação para a N-iX]] — pipeline de entrega.
+
+**Resumo:** estruturo o pipeline em estágios: Build → Test → Quality Gates →
+Pack → Deploy. Cada estágio precisa passar antes do próximo rodar.
 
 ## 1. Source & Build
-- Pull from `main` / feature branch.
-- Install dependencies (`npm ci`).
-- Build the application (Next.js / React) — outputs to `dist/` or `build/`.
 
-## 2. Test Stage
-- **Unit tests:** `jest --coverage` → coverage report (JUnit/HTML).
-- **Integration tests:** `playwright test` / `cypress run`.
-- **Linting & formatting:** `eslint`, `prettier` — fail the pipeline on violations.
+- Pull da `main` / feature branch.
+- Instalar dependências (`npm ci`).
+- Buildar a aplicação (Next.js / React) — saída em `dist/` ou `build/`.
+
+## 2. Estágio de testes
+
+- **Testes unitários:** `jest --coverage` → relatório de cobertura (JUnit/HTML).
+- **Testes de integração:** `playwright test` / `cypress run`.
+- **Lint & formatação:** `eslint`, `prettier` — falham o pipeline em violações.
 
 Ver detalhes em [[testing-react-data-fetching|testando componentes React]].
 
-## 3. Quality Gates (Azure DevOps Policy)
-- **Code coverage gate:** minimum **80%** (configurable). Below it, pipeline fails.
-- **Vulnerability scan:** `npm audit` / `snyk` — blocks on critical/high vulns.
-- **SonarQube:** deeper static analysis. Gates: "No new bugs", "Technical debt < 5%".
+## 3. Quality Gates (política do Azure DevOps)
 
-## 4. Artifact Publishing
-If all gates pass, the build artifact (e.g., `.zip` of `dist/`) is published to
-Azure Artifacts or a Container Registry.
+- **Gate de cobertura:** mínimo de **80%** (configurável). Abaixo disso, o pipeline falha.
+- **Scan de vulnerabilidades:** `npm audit` / `snyk` — bloqueia em vulns críticas/altas.
+- **SonarQube:** análise estática mais profunda. Gates: "No new bugs", "dívida técnica < 5%".
 
-## 5. Deploy Stage (environments)
-- **Dev:** automatic deployment after merge to `develop`.
-- **Staging:** manual approval trigger (or canary).
-- **Production:** manual approval + scheduled window.
+## 4. Publicação de artefato
 
-## 6. Monitoring
-Integrate **Application Insights** and **New Relic** to track performance after
-deployment. Automatic rollback triggers if error rates spike.
+Se todos os gates passam, o artefato de build (ex.: `.zip` de `dist/`) é publicado
+no Azure Artifacts ou num Container Registry.
 
-## Real-world experience (Seguralta)
-We used BitBucket Pipelines (similar to Azure DevOps). The coverage gate caught a
-5% drop and prevented a release. The team fixed tests and improved coverage to
-85% before shipping.
+## 5. Estágio de deploy (ambientes)
+
+- **Dev:** deploy automático após merge na `develop`.
+- **Staging:** gatilho de aprovação manual (ou canary).
+- **Produção:** aprovação manual + janela agendada.
+
+## 6. Monitoramento
+
+Integrar **Application Insights** e **New Relic** para acompanhar a performance
+após o deploy. Rollback automático dispara se a taxa de erros sobe.
+
+## Experiência real (Seguralta)
+
+Usamos BitBucket Pipelines (similar ao Azure DevOps). O gate de cobertura pegou
+uma queda de 5% e impediu um release. O time corrigiu os testes e elevou a
+cobertura para 85% antes de subir.
 
 ---
+
 Relacionadas: [[shared-component-library-versioning|versionamento da lib]] ·
 [[nix-interview-prep|índice]].

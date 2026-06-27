@@ -9,10 +9,11 @@ Trilha #1 do [[study-plan-gaps|plano de estudos]]. Domínio de padrões de
 composição em React e de tipagem avançada em TypeScript.
 
 ## React — padrões de composição
+
 - **Custom hooks** — extrair lógica com estado/efeitos; regras dos hooks;
   retornar tuplas vs objetos; hooks compostos.
-- **Compound components** — `<Select><Select.Option/></Select>` via `Context`
-  para compartilhar estado implícito entre filhos.
+- **[[compound-components|Compound components]]** — `<Select><Select.Option/></Select>`
+  via `Context` para compartilhar estado implícito entre filhos.
 - **Controlled vs uncontrolled** — quando expor `value`/`onChange` vs
   `defaultValue`; padrão híbrido com `useControllableState`.
 - **Render props / children as function** — inversão de controle de renderização.
@@ -23,7 +24,9 @@ composição em React e de tipagem avançada em TypeScript.
 
 ```tsx
 // Compound component com Context
-const TabsCtx = createContext<{ active: string; set: (id: string) => void } | null>(null);
+const TabsCtx = createContext<{ active: string; set: (id: string) => void } | null>(
+  null,
+);
 
 function Tabs({ defaultId, children }: { defaultId: string; children: ReactNode }) {
   const [active, set] = useState(defaultId);
@@ -32,14 +35,20 @@ function Tabs({ defaultId, children }: { defaultId: string; children: ReactNode 
 }
 function Tab({ id, children }: { id: string; children: ReactNode }) {
   const ctx = useContext(TabsCtx)!;
-  return <button aria-selected={ctx.active === id} onClick={() => ctx.set(id)}>{children}</button>;
+  return (
+    <button aria-selected={ctx.active === id} onClick={() => ctx.set(id)}>
+      {children}
+    </button>
+  );
 }
 Tabs.Tab = Tab;
 ```
 
 ## Perguntas de entrevista (treinar)
+
 - Como evitar re-renders desnecessários causados por Context?
 - Diferença entre `useMemo`, `useCallback` e `memo` — quando cada um?
 
 ---
+
 Relacionadas: [[react-performance]] · [[study-plan-gaps|plano de estudos]].

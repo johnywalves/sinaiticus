@@ -5,19 +5,22 @@ category: Backend
 tags: [express, nodejs, backend, interview]
 ---
 
-**Summary:** Order matters. I structure from **most broad / least expensive** to
-**most specific / expensive**.
+Nota de [[nix-interview-prep|preparação para a N-iX]] — camada HTTP do backend.
 
-## Correct order
-1. **Logging / Request ID** – adds `req.id` for tracing.
-2. **CORS / Helmet** – security headers first.
+**Resumo:** a ordem importa. Estruturo do **mais amplo / mais barato** para o
+**mais específico / mais caro**.
+
+## Ordem correta
+
+1. **Logging / Request ID** – adiciona `req.id` para tracing.
+2. **CORS / Helmet** – headers de segurança primeiro.
 3. **Body parsers** – `express.json()`, `express.urlencoded()`.
-4. **Rate limiter** – `express-rate-limit` based on IP or user ID.
-5. **Authentication** – validates JWT / OAuth token. Blocks early if invalid.
-6. **Authorization** – checks permissions (e.g., `req.user.role === 'admin'`).
-7. **Validation** – `Joi` / `zod` to validate request body/query.
-8. **Route handler** – the actual business logic.
-9. **Error handler** – catches all errors and sends appropriate HTTP status.
+4. **Rate limiter** – `express-rate-limit` por IP ou user ID.
+5. **Autenticação** – valida o token JWT / OAuth. Bloqueia cedo se inválido.
+6. **Autorização** – checa permissões (ex.: `req.user.role === 'admin'`).
+7. **Validação** – `Joi` / `zod` para validar body/query da requisição.
+8. **Route handler** – a lógica de negócio em si.
+9. **Error handler** – captura todos os erros e responde o status HTTP adequado.
 
 ```ts
 app.use(logger);
@@ -28,18 +31,20 @@ app.use(rateLimiter);
 app.use(authMiddleware);
 app.use(authorizationMiddleware);
 app.use(validateRequest);
-app.use('/api/orders', orderRoutes);
+app.use("/api/orders", orderRoutes);
 app.use(errorHandler);
 ```
 
-## Why this order
-- Rate limiting before auth avoids wasting CPU on invalid tokens.
-- Auth before validation prevents validating requests from unauthenticated users.
-- Error handler is last to catch any thrown errors.
+## Por que esta ordem
 
-**Real-world note:** I also add **circuit breakers** on external API calls inside
-the route handler to prevent cascading failures.
+- Rate limiting antes da auth evita gastar CPU com tokens inválidos.
+- Auth antes da validação evita validar requisições de usuários não autenticados.
+- O error handler vem por último para capturar qualquer erro lançado.
+
+**Nota do mundo real:** também adiciono **circuit breakers** em chamadas a APIs
+externas dentro do route handler para evitar falhas em cascata.
 
 ---
+
 Relacionadas: [[nodejs-high-concurrency|Node.js sob alta concorrência]] ·
 [[nix-interview-prep|índice]].

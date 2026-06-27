@@ -5,35 +5,39 @@ category: Frontend
 tags: [testing, react, frontend, interview]
 ---
 
-**Summary:** I test all three states: **loading**, **success**, and **error** —
-using **React Testing Library** and **MSW (Mock Service Worker)**.
+Nota de [[nix-interview-prep|preparação para a N-iX]] — caso prático de [[frontend-testing-practices|testes de frontend]].
 
-## Steps
-1. **Mock the API (MSW):** intercept the fetch request and return mock data;
-   configure different responses per test case (success, error, loading).
-2. **Test loading state:** render, assert a spinner/skeleton is displayed, ensure
-   data is not rendered yet.
-3. **Test success state:** MSW returns success; assert data is rendered
-   (`screen.getByText('User Name')`); check loading disappears.
-4. **Test error state:** MSW returns a 500 / network error; assert an error
-   message is displayed; check retry (if implemented).
-5. **Test edge cases:** empty array → "No items"; very large dataset → handles
-   without crashing (maybe skip for unit tests, cover in E2E).
+**Resumo:** testo os três estados: **loading**, **success** e **error** — usando
+**React Testing Library** e **MSW (Mock Service Worker)**.
+
+## Passos
+
+1. **Mockar a API (MSW):** interceptar o fetch e retornar dados fake; configurar
+   respostas diferentes por caso de teste (sucesso, erro, loading).
+2. **Testar o loading:** renderizar, garantir que um spinner/skeleton aparece e
+   que os dados ainda não foram renderizados.
+3. **Testar o sucesso:** MSW retorna sucesso; garantir que os dados são
+   renderizados (`screen.getByText('User Name')`); checar que o loading some.
+4. **Testar o erro:** MSW retorna 500 / erro de rede; garantir que uma mensagem de
+   erro aparece; checar o retry (se implementado).
+5. **Testar edge cases:** array vazio → "No items"; dataset muito grande → lida
+   sem travar (talvez pular no unit, cobrir no E2E).
 
 ```tsx
-test('displays user data after successful fetch', async () => {
+test("exibe os dados do usuário após o fetch bem-sucedido", async () => {
   render(<UserProfile userId={1} />);
-  expect(screen.getByText('Loading...')).toBeInTheDocument();
-  const name = await screen.findByText('John Doe');
+  expect(screen.getByText("Loading...")).toBeInTheDocument();
+  const name = await screen.findByText("John Doe");
   expect(name).toBeInTheDocument();
 });
 ```
 
-**Real-world practice:** I use Testing Library queries that resemble how users
-interact (`findBy`, `getBy`, `queryBy`) and avoid testing implementation details
-(e.g., checking if a specific function was called).
+**Prática do mundo real:** uso queries da Testing Library que se parecem com a
+interação do usuário (`findBy`, `getBy`, `queryBy`) e evito testar detalhes de
+implementação (ex.: checar se uma função específica foi chamada).
 
 ---
+
 Relacionadas: [[azure-devops-cicd-pipeline|gates de CI/CD]] ·
 [[shared-component-library-versioning|testes da lib de componentes]] ·
 [[nix-interview-prep|índice]].

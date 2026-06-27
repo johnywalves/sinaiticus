@@ -5,43 +5,51 @@ category: Frontend
 tags: [component-library, versioning, frontend, interview]
 ---
 
-**Summary:** I use **semantic versioning**, **automated changelogs**, and a
-**phased adoption strategy** to keep MFEs safe and aligned.
+Nota de [[nix-interview-prep|preparação para a N-iX]] — design system entre MFEs.
 
-## 1. Versioning (SemVer)
-- **Patch** – bug fixes, internal refactors (no breaking changes).
-- **Minor** – new features, deprecations (backward-compatible).
-- **Major** – breaking changes (API changes, removal of props).
+**Resumo:** uso **versionamento semântico**, **changelogs automatizados** e uma
+**estratégia de adoção em fases** para manter os MFEs seguros e alinhados.
 
-## 2. Publishing automation
-- Each PR to `main` runs tests + build.
-- On merge, CI (GitHub Actions) bumps version based on commit messages
-  (Conventional Commits) and publishes to a private npm registry (or Azure
-  Artifacts).
-- A `CHANGELOG.md` is generated automatically.
+## 1. Versionamento (SemVer)
 
-## 3. Adoption strategy
-- **Canary versions:** publish pre-release versions (`@next`, `@alpha`) for early
-  adopters before the official release.
-- **Deprecation window:** breaking changes announced 2–4 weeks in advance; old API
-  kept in parallel with deprecation warnings.
-- **Version constraints:** MFEs specify ranges (e.g., `^1.5.0`) and stay on older
-  versions until ready to upgrade.
+- **Patch** – correções de bug, refatorações internas (sem breaking changes).
+- **Minor** – novas features, deprecações (retrocompatível).
+- **Major** – breaking changes (mudança de API, remoção de props).
 
-## 4. Testing the library in isolation
-**Storybook** to visualise components, **Jest + React Testing Library** for unit
-tests, and **Cypress** for integration tests. Each component tested in all
-supported themes/variants. Ver [[testing-react-data-fetching|testes de componentes]].
+## 2. Automação de publicação
 
-## 5. Documentation
-Generated via **Storybook** + markdown. Includes usage examples, prop tables, and
-migration guides for breaking changes.
+- Cada PR para `main` roda testes + build.
+- No merge, o CI (GitHub Actions) sobe a versão conforme as mensagens de commit
+  (Conventional Commits) e publica num registry npm privado (ou Azure Artifacts).
+- Um `CHANGELOG.md` é gerado automaticamente.
 
-## Real-world example (WeFit)
-3 MFEs consumed our component library. A major release changed the `Button`
-variant naming. We used the deprecation window and provided a codemod to automate
-the migration. All MFEs updated within 2 weeks.
+## 3. Estratégia de adoção
+
+- **Versões canary:** publicar pré-releases (`@next`, `@alpha`) para early
+  adopters antes do release oficial.
+- **Janela de deprecação:** breaking changes anunciadas com 2–4 semanas de
+  antecedência; API antiga mantida em paralelo com avisos de deprecação.
+- **Restrições de versão:** os MFEs especificam ranges (ex.: `^1.5.0`) e ficam em
+  versões antigas até estarem prontos para atualizar.
+
+## 4. Testar a lib isoladamente
+
+**Storybook** para visualizar componentes, **Jest + React Testing Library** para
+testes unitários e **Cypress** para integração. Cada componente testado em todos
+os temas/variantes suportados. Ver [[testing-react-data-fetching|testes de componentes]].
+
+## 5. Documentação
+
+Gerada via **Storybook** + markdown. Inclui exemplos de uso, tabelas de props e
+guias de migração para breaking changes.
+
+## Exemplo real (WeFit)
+
+3 MFEs consumiam nossa lib de componentes. Um release major mudou a nomenclatura
+das variantes do `Button`. Usamos a janela de deprecação e fornecemos um codemod
+para automatizar a migração. Todos os MFEs atualizaram em 2 semanas.
 
 ---
+
 Relacionadas: [[microfrontend-communication|micro-frontends]] ·
 [[azure-devops-cicd-pipeline|CI/CD]] · [[nix-interview-prep|índice]].

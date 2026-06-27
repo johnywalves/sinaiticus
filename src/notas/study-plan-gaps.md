@@ -17,15 +17,16 @@ focada.
 
 ## Trilhas (por prioridade)
 
-| # | Lacuna | Nota | Categoria |
-|---|--------|------|-----------|
-| 1 | Advanced React + TS patterns | [[advanced-react-patterns]] | Frontend |
-| 2 | React performance | [[react-performance]] | Frontend |
-| 3 | Frontend testing | [[frontend-testing-practices]] | Frontend |
-| 4 | Node.js runtime internals | [[nodejs-runtime-internals]] | Backend |
-| 5 | Inglês técnico | [[technical-english]] | Plano de Estudos |
+| #   | Lacuna                       | Nota                                         | Categoria        |
+| --- | ---------------------------- | -------------------------------------------- | ---------------- |
+| 1   | Advanced React + TS patterns | [[advanced-react]] · [[typescript-patterns]] | Frontend         |
+| 2   | React performance            | [[react-performance]]                        | Frontend         |
+| 3   | Frontend testing             | [[frontend-testing-practices]]               | Frontend         |
+| 4   | Node.js runtime internals    | [[nodejs-runtime-internals]]                 | Backend          |
+| 5   | Inglês técnico               | [[technical-english]]                        | Plano de Estudos |
 
 ## Como usar
+
 - Cada trilha lista **tópicos a dominar**, exemplos e **perguntas de entrevista**.
 - As trilhas se conectam às notas que já existem da preparação anterior
   (ver [[nix-interview-prep|índice N-iX]]).
@@ -33,6 +34,7 @@ focada.
   resolvendo exercícios.
 
 ## Conexões com notas existentes
+
 - [[react-code-splitting]] reforça [[react-performance]].
 - [[testing-react-data-fetching]] é um caso prático de [[frontend-testing-practices]].
 - [[nodejs-high-concurrency]] e [[express-middleware-chain]] apoiam

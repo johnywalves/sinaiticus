@@ -5,45 +5,50 @@ category: Backend
 tags: [nodejs, performance, backend, interview]
 ---
 
-**Summary:** Use **non-blocking async patterns**, **offload CPU tasks**, and
-**scale horizontally**.
+Nota de [[nix-interview-prep|preparação para a N-iX]] — performance de backend.
 
-## Key strategies
-1. **Non-blocking Async I/O:**
-   - Use `async/await` for all I/O (DB, external APIs, file system).
-   - Avoid `Sync` functions (`readFileSync`, `crypto.pbkdf2Sync`).
-   - Use **streams** for large data (CSV exports) to avoid buffering in memory.
-2. **CPU-intensive tasks:**
-   - Move them to **Worker Threads** or a **separate microservice**.
-   - Use `worker_threads` or an external job queue (Bull + Redis).
-   - Respond immediately with `202 Accepted` and process in the background.
+**Resumo:** use **padrões async não-bloqueantes**, **descarregue tarefas de CPU**
+e **escale horizontalmente**.
+
+## Estratégias-chave
+
+1. **I/O assíncrono não-bloqueante:**
+   - Use `async/await` para todo I/O (DB, APIs externas, sistema de arquivos).
+   - Evite funções `Sync` (`readFileSync`, `crypto.pbkdf2Sync`).
+   - Use **streams** para dados grandes (export CSV) e não bufferizar na memória.
+2. **Tarefas intensivas em CPU:**
+   - Mova-as para **Worker Threads** ou um **microsserviço separado**.
+   - Use `worker_threads` ou uma fila externa (Bull + Redis).
+   - Responda imediatamente com `202 Accepted` e processe em background.
 3. **Connection Pooling:**
-   - For PostgreSQL, use `pg.Pool` with a configured max connections.
-   - Keep the pool size below the DB's max to avoid timeouts.
+   - Para PostgreSQL, use `pg.Pool` com um máximo de conexões configurado.
+   - Mantenha o pool abaixo do máximo do banco para evitar timeouts.
 4. **Rate Limiting & Backpressure:**
-   - Apply rate limiting (per IP/user) — ver [[express-middleware-chain|ordem dos middlewares]].
-   - Use backpressure signals to slow down clients when overloaded.
-5. **Horizontal scaling:**
-   - Run multiple Node instances (cluster mode or PM2).
-   - Use a load balancer (NGINX) to distribute requests.
-   - Ensure **statelessness** so any instance can handle any request.
-6. **Monitoring & Observability:**
-   - Metrics (req/sec, error rate, latency) via Prometheus.
-   - Distributed tracing (OpenTelemetry) to pinpoint bottlenecks.
+   - Aplique rate limiting (por IP/usuário) — ver [[express-middleware-chain|ordem dos middlewares]].
+   - Use sinais de backpressure para frear clientes quando sobrecarregado.
+5. **Escala horizontal:**
+   - Rode múltiplas instâncias Node (cluster mode ou PM2).
+   - Use um load balancer (NGINX) para distribuir as requisições.
+   - Garanta **statelessness** para qualquer instância atender qualquer request.
+6. **Monitoramento & Observabilidade:**
+   - Métricas (req/s, taxa de erro, latência) via Prometheus.
+   - Tracing distribuído (OpenTelemetry) para localizar gargalos.
 
 ```ts
-app.post('/api/report', async (req, res) => {
+app.post("/api/report", async (req, res) => {
   const { data } = req.body;
-  const job = await queue.add('generate-report', { data });
-  res.status(202).json({ jobId: job.id }); // immediate response
+  const job = await queue.add("generate-report", { data });
+  res.status(202).json({ jobId: job.id }); // resposta imediata
 });
 ```
 
-## Real-world result (Seguralta)
-Used for monthly commission reports. The endpoint handled **2,500 concurrent
-requests** without blocking the event loop, with average response time < 200ms for
-the initial `202 Accepted`.
+## Resultado real (Seguralta)
+
+Usado em relatórios mensais de comissão. O endpoint suportou **2.500 requisições
+concorrentes** sem bloquear o event loop, com tempo de resposta médio < 200ms para
+o `202 Accepted` inicial.
 
 ---
+
 Relacionadas: [[express-middleware-chain|cadeia de middlewares]] ·
 [[nix-interview-prep|índice]].

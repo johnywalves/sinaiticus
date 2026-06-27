@@ -1,9 +1,13 @@
 ---
-title: "Advanced React & TypeScript Patterns"
+title: "Padrões Avançados de TypeScript"
 layout: base.njk
 category: Frontend
 tags: [typescript, patterns, study-plan, interview]
 ---
+
+Companheira aprofundada da trilha #1 do [[study-plan-gaps|plano de estudos]],
+focada em **tipagem avançada**. Para os padrões de composição em React, ver
+[[advanced-react]].
 
 ## 🧱 1. Padrões de Tipagem Estrutural (Structural Type Patterns)
 
@@ -12,17 +16,17 @@ tags: [typescript, patterns, study-plan, interview]
 Usado para modelar estados mutuamente exclusivos com segurança.
 
 ```typescript
-type LoadingState = { status: 'loading' };
-type SuccessState<T> = { status: 'success'; data: T };
-type ErrorState = { status: 'error'; error: Error };
+type LoadingState = { status: "loading" };
+type SuccessState<T> = { status: "success"; data: T };
+type ErrorState = { status: "error"; error: Error };
 
 type AsyncState<T> = LoadingState | SuccessState<T> | ErrorState;
 
 // Uso com type narrowing automático
 function handleState<T>(state: AsyncState<T>) {
-  if (state.status === 'loading') {
-    console.log('Carregando...');
-  } else if (state.status === 'success') {
+  if (state.status === "loading") {
+    console.log("Carregando...");
+  } else if (state.status === "success") {
     console.log(state.data); // T disponível
   } else {
     console.log(state.error.message);
@@ -42,7 +46,9 @@ function createUserId(id: string): UserId {
   return id as UserId;
 }
 
-function getUser(id: UserId) { /* ... */ }
+function getUser(id: UserId) {
+  /* ... */
+}
 
 // getUser(createProductId('123')); // Erro de tipo!
 ```
@@ -54,8 +60,8 @@ Valida o tipo de uma expressão sem alargá-lo (mantém a inferência mais espec
 ```typescript
 const config = {
   port: 3000,
-  env: 'production',
-  logLevel: 'info'
+  env: "production",
+  logLevel: "info",
 } satisfies Record<string, string | number>;
 
 // config.port é `number`, não `string | number`
@@ -105,12 +111,12 @@ type PickStrings<T> = {
 Criam tipos baseados em strings, perfeitos para rotas, eventos e DOM.
 
 ```typescript
-type EventType = 'click' | 'hover' | 'focus';
+type EventType = "click" | "hover" | "focus";
 type HandlerName = `on${Capitalize<EventType>}`; // 'onClick' | 'onHover' | 'onFocus'
 
 // Validação de rotas com parâmetros
 type Route = `/user/${string}/post/${string}`;
-const route: Route = '/user/123/post/456'; // OK
+const route: Route = "/user/123/post/456"; // OK
 ```
 
 ### 2.4 Variadic Tuple Types
@@ -124,7 +130,7 @@ type Result = Concat<[1, 2], [3, 4]>; // [1, 2, 3, 4]
 
 // Função que recebe e espalha argumentos
 declare function spread<T extends any[]>(...args: T): T;
-const arr = spread(1, 'a', true); // tipo: [number, string, boolean]
+const arr = spread(1, "a", true); // tipo: [number, string, boolean]
 ```
 
 ---
@@ -148,9 +154,9 @@ class ProductFactory {
 }
 
 class Book implements Product {
-  id = 'b1';
-  name = 'Book';
-  author = 'Unknown';
+  id = "b1";
+  name = "Book";
+  author = "Unknown";
 }
 
 const factory = new ProductFactory();
@@ -162,19 +168,33 @@ const book = factory.create(Book); // tipo: Book (com author disponível)
 Garante que métodos sejam chamados na ordem correta via estados.
 
 ```typescript
-interface Step1 { setA(value: string): Step2; }
-interface Step2 { setB(value: number): Final; }
-interface Final { build(): { a: string; b: number }; }
-
-class Builder implements Step1, Step2, Final {
-  private a = '';
-  private b = 0;
-  setA(value: string) { this.a = value; return this; }
-  setB(value: number) { this.b = value; return this; }
-  build() { return { a: this.a, b: this.b }; }
+interface Step1 {
+  setA(value: string): Step2;
+}
+interface Step2 {
+  setB(value: number): Final;
+}
+interface Final {
+  build(): { a: string; b: number };
 }
 
-const result = new Builder().setA('test').setB(10).build();
+class Builder implements Step1, Step2, Final {
+  private a = "";
+  private b = 0;
+  setA(value: string) {
+    this.a = value;
+    return this;
+  }
+  setB(value: number) {
+    this.b = value;
+    return this;
+  }
+  build() {
+    return { a: this.a, b: this.b };
+  }
+}
+
+const result = new Builder().setA("test").setB(10).build();
 ```
 
 ### 3.3 Adapter Pattern (Adaptador) com Mapeamento de Tipos
@@ -198,7 +218,7 @@ function adaptUser(api: ApiUser): DomainUser {
   return {
     id: api.user_id,
     name: api.full_name,
-    age: parseInt(api.age_str, 10)
+    age: parseInt(api.age_str, 10),
   };
 }
 // Uso com `satisfies` para garantir que o adaptador cobre todas as chaves
@@ -213,9 +233,7 @@ function adaptUser(api: ApiUser): DomainUser {
 Representa operações que podem falhar sem lançar exceções.
 
 ```typescript
-type Result<T, E = Error> = 
-  | { ok: true; value: T }
-  | { ok: false; error: E };
+type Result<T, E = Error> = { ok: true; value: T } | { ok: false; error: E };
 
 function safeParse<T>(json: string): Result<T> {
   try {
@@ -234,10 +252,9 @@ if (res.ok) console.log(res.value.id);
 Função que transforma `(a, b, c) => R` em `(a) => (b) => (c) => R`.
 
 ```typescript
-type Curry<P extends any[], R> = 
-  P extends [infer First, ...infer Rest] 
-    ? (arg: First) => Curry<Rest, R>
-    : R;
+type Curry<P extends any[], R> = P extends [infer First, ...infer Rest]
+  ? (arg: First) => Curry<Rest, R>
+  : R;
 
 declare function curried<A extends any[], R>(fn: (...args: A) => R): Curry<A, R>;
 
@@ -257,14 +274,15 @@ interface ServiceMap {
 }
 
 class ServiceRegistry {
-  private services: Partial<Record<keyof ServiceMap, ServiceMap[keyof ServiceMap]>> = {};
-  
+  private services: Partial<Record<keyof ServiceMap, ServiceMap[keyof ServiceMap]>> =
+    {};
+
   register<K extends keyof ServiceMap>(key: K, service: ServiceMap[K]) {
     this.services[key] = service;
   }
-  
+
   get<K extends keyof ServiceMap>(key: K): ServiceMap[K] {
-    if (!this.services[key]) throw new Error('Service not found');
+    if (!this.services[key]) throw new Error("Service not found");
     return this.services[key] as ServiceMap[K];
   }
 }
@@ -287,7 +305,7 @@ declare global {
 }
 
 if (!Array.prototype.last) {
-  Array.prototype.last = function() {
+  Array.prototype.last = function () {
     return this[this.length - 1];
   };
 }
@@ -348,14 +366,14 @@ function withAuth<P extends WithAuthProps>(
 
 ## 📋 7. Checklist para Entrevistas Sênior
 
-| Pergunta | Padrão/Conceito cobrado |
-| :--- | :--- |
-| *"Como você faria um sistema de eventos onde o nome do evento dita o tipo do payload?"* | Template Literals + Mapped Types (ex: `EventMap[K]`) |
-| *"Como evitar que IDs de diferentes entidades se misturem?"* | Branded Types / Opaque Types |
-| *"Como criar um utilitário que extrai o tipo de retorno de uma função assíncrona?"* | `Awaited<ReturnType<T>>` + Conditional Types |
-| *"Como você implementaria um Redux reducer seguro sem `any`?"* | Discriminated Unions para ações (`type` + `payload`) |
-| *"Como garantir que um objeto config tenha todas as chaves de um enum, mas permita valores adicionais?"* | `Record<Enum, T> & Partial<Record<string, unknown>>` |
-| *"Como tipar um `compose` de funções com número variável de argumentos?"* | Variadic Tuple Types + `infer` recursivo |
+| Pergunta                                                                                                 | Padrão/Conceito cobrado                              |
+| :------------------------------------------------------------------------------------------------------- | :--------------------------------------------------- |
+| _"Como você faria um sistema de eventos onde o nome do evento dita o tipo do payload?"_                  | Template Literals + Mapped Types (ex: `EventMap[K]`) |
+| _"Como evitar que IDs de diferentes entidades se misturem?"_                                             | Branded Types / Opaque Types                         |
+| _"Como criar um utilitário que extrai o tipo de retorno de uma função assíncrona?"_                      | `Awaited<ReturnType<T>>` + Conditional Types         |
+| _"Como você implementaria um Redux reducer seguro sem `any`?"_                                           | Discriminated Unions para ações (`type` + `payload`) |
+| _"Como garantir que um objeto config tenha todas as chaves de um enum, mas permita valores adicionais?"_ | `Record<Enum, T> & Partial<Record<string, unknown>>` |
+| _"Como tipar um `compose` de funções com número variável de argumentos?"_                                | Variadic Tuple Types + `infer` recursivo             |
 
 ---
 
@@ -378,6 +396,10 @@ function withAuth<P extends WithAuthProps>(
 - `type-fest` – Coleção de utility types avançados (ex: `OmitIndexSignature`, `DelimiterCasedProperties`).
 - ESLint: `@typescript-eslint/consistent-type-imports` – Força `import type` para melhor bundling.
 
----typeScript-patterns
+---
 
 > **Conclusão:** Dominar estes padrões não é apenas sobre escrever tipos, mas sobre **modelar domínios, prevenir bugs em tempo de compilação e criar APIs intuitivas**. O verdadeiro poder do TypeScript emerge quando os tipos guiam a implementação, e não apenas a documentam.
+
+---
+
+Relacionadas: [[advanced-react]] · [[study-plan-gaps|plano de estudos]].
