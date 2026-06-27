@@ -136,7 +136,8 @@ arquivos que compartilham o **mesmo slug conceitual**:
 
 `interview` · `study-plan` · `moc` · `react` · `frontend` · `backend` ·
 `performance` · `nodejs` · `typescript` · `testing` · `patterns` · `carreira` ·
-`python` · `architecture` · `ci-cd` · `devops`
+`python` · `architecture` · `ci-cd` · `devops` · `express` · `html` · `web` ·
+`seo` · `open-graph` · `i18n` · `hooks` · `wordpress` · `php` · `cms`
 
 > `moc` = _Map of Content_ (nota-índice que organiza outras). `study-plan` para
 > notas-trilha. `interview` para conteúdo de preparação.
