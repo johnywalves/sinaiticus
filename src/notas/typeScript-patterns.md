@@ -1,5 +1,5 @@
 ---
-title: "Padrões Avançados de TypeScript"
+title: "Padrões de TypeScript"
 layout: base.njk
 category: Frontend
 tags: [typescript, patterns, study-plan, interview]
